@@ -4,6 +4,7 @@ module br.com.escola.cadastro.cadastroescolarjava {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
+    requires java.sql;
 
     opens br.com.escola.cadastro.cadastroescolarjava to javafx.fxml;
     exports br.com.escola.cadastro.cadastroescolarjava;
