@@ -14,10 +14,10 @@ public class Aluno extends Pessoa {
     public Aluno() {}
 
     public Aluno(int id, String nome, String dataNascimento,
-                 String matricula, String telefone, String cpfDoResponsavel,
-                 String tipoSanguineo, String serie,
+                 String matricula, String telefone, String celular,
+                 String cpfDoResponsavel, String tipoSanguineo, String serie,
                  boolean aprovado, int idTurma) {
-        super(id, nome, telefone, dataNascimento);
+        super(id, nome, telefone, celular, dataNascimento);
         this.matricula = matricula;
         this.serie = serie;
         this.idTurma = idTurma;
