@@ -13,7 +13,7 @@ public class Professor extends Pessoa{
         super (nome, matricula, telefone, celular, cpf);
         this.cpf = cpf;
         this.setNome(nome);
-        this.matricula
+        this.matricula;
         this.turmas = new ArrayList<>();
     }
 
