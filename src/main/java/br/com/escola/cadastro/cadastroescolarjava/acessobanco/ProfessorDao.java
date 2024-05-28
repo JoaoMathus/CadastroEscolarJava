@@ -12,14 +12,15 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
             "    nome TEXT,\n" +
             "    cpf TEXT,\n" +
             "    telefone TEXT,\n" +
+            "    celular TEXT,\n" +
             "    datanascimento TEXT\n" +
             ")";
     private final String insertSql = "INSERT INTO professor (" +
-            "nome, cpf, telefone, datanascimento) VALUES (" +
-            "?, ?, ?, ?)";
+            "nome, cpf, telefone, celular, datanascimento) VALUES (" +
+            "?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM professor WHERE idprofessor = ?";
     private final String updateSql = "UPDATE professor SET nome = ?, " +
-            "cpf = ?, telefone = ?, datanascimento = ? " +
+            "cpf = ?, telefone = ?, celular = ?, datanascimento = ? " +
             "WHERE idprofessor = ?";
     private final String selectSql = "SELECT * FROM professor WHERE idprofessor = ?";
     private final String selectAllSql = "SELECT * FROM professor";
@@ -37,7 +38,8 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
         }
     }
 
-    public void inserir(String nome, String cpf, String telefone, String dataNascimento) {
+    public void inserir(String nome, String cpf, String telefone, String celular,
+                        String dataNascimento) {
         // Ver se o professor já está no banco
         var professores = selecionarTodos();
         for (var professor : professores) {
@@ -49,7 +51,8 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
             stmt.setString(1, nome);
             stmt.setString(2, cpf);
             stmt.setString(3, telefone);
-            stmt.setString(4, dataNascimento);
+            stmt.setString(4, celular);
+            stmt.setString(5, dataNascimento);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro ao inserir professor: " + ex.getMessage());
@@ -72,8 +75,9 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getCpf());
             stmt.setString(3, p.getTelefone());
-            stmt.setString(4, p.getDataNascimento());
-            stmt.setInt(5, p.getId());
+            stmt.setString(4, p.getCelular());
+            stmt.setString(5, p.getDataNascimento());
+            stmt.setInt(6, p.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -89,8 +93,8 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
             var r = stmt.executeQuery();
             while (r.next()) {
                 p = new Professor(r.getInt("idprofessor"), r.getString("nome"),
-                        r.getString("cpf"), r.getString("telefone"),
-                        r.getString("datanascimento"));
+                        r.getString("telefone"), r.getString("celular"),
+                        r.getString("datanascimento"), r.getString("cpf"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar professor: " + ex.getMessage());
@@ -105,8 +109,8 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
             var r = stmt.executeQuery(selectAllSql);
             while (r.next()) {
                 lista.add(new Professor(r.getInt("idprofessor"), r.getString("nome"),
-                        r.getString("cpf"), r.getString("telefone"),
-                        r.getString("datanascimento")));
+                        r.getString("telefone"), r.getString("celular"),
+                        r.getString("datanascimento"), r.getString("cpf")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todos os professores: " + ex.getMessage());
