@@ -3,10 +3,7 @@ package br.com.escola.cadastro.cadastroescolarjava;
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -67,10 +64,24 @@ public class AlunoController {
 
     @FXML
     protected void salvarAluno() {
-        Aluno a = new Aluno(1, txtNome.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
-                txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(), escolhaTipoSanguineo.getValue().toString(),
-                "3", false, 1);
+        if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
+                txtMatricula.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
+                txtCelular.getText().isEmpty() || txtCpfResponsavel.getText().isEmpty() ||
+                escolhaTipoSanguineo.getValue().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao salvar aluno");
+            alert.setHeaderText("Não foi possível salvar o aluno");
+            alert.setContentText("Certifique-se de preencher todos os campos!");
 
-        System.out.println(a.toString());
+            alert.showAndWait();
+            return;
+        }
+        // TODO: Adicionar lógica para resgatar uma turma pelo número (que é o control da tela de cadastro).
+        // TODO: e então resgatar a "série" pelo número e adicioná-lo ao objeto do aluno.
+        application.getAlunoDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
+                txtMatricula.getText(), txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(),
+                escolhaTipoSanguineo.getValue(), "Segunda", 1);
+
+        application.getAlunoDao().selecionarTodos().forEach(System.out::println);
     }
 }
