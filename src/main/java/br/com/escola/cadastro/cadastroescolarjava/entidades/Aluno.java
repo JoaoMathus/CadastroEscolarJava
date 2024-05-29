@@ -1,12 +1,9 @@
 package br.com.escola.cadastro.cadastroescolarjava.entidades;
 
-import java.util.List;
-
 public class Aluno extends Pessoa {
     private String matricula;
     private String serie;
     private int idTurma;
-    private List<Disciplina> disciplinas;
     private String tipoSanguineo;
     private String cpfDoResponsavel;
     private boolean aprovado;
@@ -50,14 +47,6 @@ public class Aluno extends Pessoa {
         this.idTurma = idTurma;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
     public String getTipoSanguineo() {
         return tipoSanguineo;
     }
@@ -93,7 +82,6 @@ public class Aluno extends Pessoa {
                 ", matricula='" + matricula + '\'' +
                 ", serie='" + serie + '\'' +
                 ", idTurma=" + idTurma +
-                ", disciplinas=" + disciplinas +
                 ", tipoSanguineo='" + tipoSanguineo + '\'' +
                 ", cpfDoResponsavel='" + cpfDoResponsavel + '\'' +
                 ", aprovado=" + aprovado +
