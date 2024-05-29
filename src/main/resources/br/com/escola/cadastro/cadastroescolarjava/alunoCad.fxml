@@ -152,7 +152,7 @@
             </TextField>
          </children>
       </GridPane>
-      <Button id="btnNovo" layoutX="650.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
+      <Button id="btnPesquisar" onAction="#selecionarPorMatricula" layoutX="650.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
       <Button id="btnSalvar" onAction="#salvarAluno" layoutX="800.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
       <Button id="btnDeletar" onAction="#deletarAluno" layoutX="950.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
       <Label layoutX="93.0" layoutY="475.0" text="Procurar:">
@@ -160,16 +160,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="txtPesqui" layoutX="169.0" layoutY="470.0" prefHeight="39.0" prefWidth="245.0" promptText="Digite a Matrícula">
+      <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="169.0" layoutY="470.0" prefHeight="39.0" prefWidth="245.0" promptText="Digite a Matrícula">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TableView id="tabela" layoutX="17.0" layoutY="548.0" prefHeight="233.0" prefWidth="1063.0">
+      <TableView id="tabelaAlunos" fx:id="tabelaAlunos" layoutX="17.0" layoutY="548.0" prefHeight="233.0" prefWidth="1063.0">
         <columns>
-          <TableColumn id="tabelaMatricula" prefWidth="134.0" text="Matrícula" />
-          <TableColumn id="tabelaNome" prefWidth="669.0" text="Nome" />
-            <TableColumn id="tabelaTurma" prefWidth="200.0" text="Turma" />
+          <TableColumn id="colunaMatricula" fx:id="colunaMatricula" prefWidth="134.0" text="Matrícula" />
+          <TableColumn id="colunaNome" fx:id="colunaNome" prefWidth="669.0" text="Nome" />
+            <TableColumn id="colunaTurma" fx:id="colunaTurma" prefWidth="200.0" text="Turma" />
         </columns>
       </TableView>
    </children>

@@ -1,15 +1,19 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AlunoController {
     @FXML
@@ -34,6 +38,16 @@ public class AlunoController {
     private DatePicker dataNascimento;
     @FXML
     private ChoiceBox<String> escolhaTipoSanguineo;
+    @FXML
+    private TextField txtPesquisa;
+    @FXML
+    private TableView tabelaAlunos;
+    @FXML
+    private TableColumn<Aluno, String> colunaMatricula;
+    @FXML
+    private TableColumn<Aluno, String> colunaNome;
+    @FXML
+    private TableColumn<Aluno, String> colunaTurma;
 
     private AluApp application;
 
@@ -120,5 +134,20 @@ public class AlunoController {
                 }
             }
         });
+    }
+
+    @FXML
+    protected void selecionarPorMatricula() {
+        colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+
+        List<Aluno> alunosFiltrados = application.getAlunoDao().selecionarTodos()
+                .stream().filter(aluno -> aluno.getMatricula().equals(txtPesquisa.getText()))
+                .toList();
+
+        ObservableList<Aluno> listaObservavel = FXCollections.observableArrayList(alunosFiltrados);
+
+        tabelaAlunos.setItems(listaObservavel);
     }
 }
