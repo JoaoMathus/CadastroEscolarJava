@@ -16,8 +16,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
+            fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="30.0" prefWidth="1100.0">
         <menus>
@@ -110,27 +112,40 @@ fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField id="txtNome" GridPane.rowIndex="1">
+            <TextField id="txtNome" fx:id="txtNome" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField id="txtTelefone" GridPane.rowIndex="2">
+            <TextField id="txtTelefone" fx:id="txtTelefone" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <TextField id="txtCelular" GridPane.rowIndex="3">
+            <TextField id="txtCelular" fx:id="txtCelular" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <DatePicker id="dataNascimento" GridPane.rowIndex="4" />
+            <DatePicker id="dataNascimento" fx:id="dataNascimento" GridPane.rowIndex="4" />
             <ChoiceBox id="escolhaTurma" prefWidth="150.0" GridPane.rowIndex="5" />
-            <ChoiceBox id="escolhaSangue" prefWidth="150.0" GridPane.rowIndex="6" />
-            <TextField id="txtCpfResponsavel" GridPane.rowIndex="7">
+            <ChoiceBox id="escolhaTipoSanguineo" fx:id="escolhaTipoSanguineo" value="Escolha o tipo" prefWidth="150.0" GridPane.rowIndex="6">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="A+" />
+                        <String fx:value="A-" />
+                        <String fx:value="B+" />
+                        <String fx:value="B-" />
+                        <String fx:value="AB+" />
+                        <String fx:value="AB-" />
+                        <String fx:value="O+" />
+                        <String fx:value="0-" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" GridPane.rowIndex="7">
                <font>
                   <Font size="18.0" />
                </font></TextField>
             <ChoiceBox id="escolhaSituacao" prefWidth="150.0" GridPane.rowIndex="8" />
-            <TextField id="txtMatricula" prefWidth="851.0">
+            <TextField id="txtMatricula" fx:id="txtMatricula" prefWidth="851.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -138,7 +153,7 @@ fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
          </children>
       </GridPane>
       <Button id="btnNovo" layoutX="650.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
-      <Button id="btnSalvar" layoutX="800.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+      <Button id="btnSalvar" onAction="#salvarAluno" layoutX="800.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
       <Button id="btnDeletar" layoutX="950.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
       <Label layoutX="93.0" layoutY="475.0" text="Procurar:">
          <font>
