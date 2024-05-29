@@ -1,17 +1,14 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
+import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class AlunoController {
@@ -94,10 +91,34 @@ public class AlunoController {
             application.getAlunoDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
                     txtMatricula.getText(), txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(),
                     escolhaTipoSanguineo.getValue(), "Segunda", 1);
-        } else {
-            return;
         }
 
         application.getAlunoDao().selecionarTodos().forEach(System.out::println);
+    }
+
+    @FXML
+    protected void deletarAluno() {
+        TextInputDialog dialogo = new TextInputDialog();
+        dialogo.setTitle("Deletar um aluno");
+        dialogo.setHeaderText("Digite a matrícula do aluno que você quer deletar");
+        dialogo.setContentText("Matrícula:");
+
+        Optional<String> resultado = dialogo.showAndWait();
+        resultado.ifPresent(matricula -> {
+            Alert confirma = new Alert(Alert.AlertType.CONFIRMATION);
+            confirma.setTitle("Deletar aluno");
+            confirma.setHeaderText("Deseja mesmo deletar esse aluno?");
+            confirma.setContentText("O aluno será apagado do banco de dados");
+
+            Optional<ButtonType> resposta = confirma.showAndWait();
+            if (resposta.get() == ButtonType.OK) {
+                List<Aluno> alunos = application.getAlunoDao().selecionarTodos();
+                for (Aluno aluno : alunos) {
+                    if (aluno.getMatricula().equals(matricula)) {
+                        application.getAlunoDao().deletar(aluno.getId());
+                    }
+                }
+            }
+        });
     }
 }

@@ -154,7 +154,7 @@
       </GridPane>
       <Button id="btnNovo" layoutX="650.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
       <Button id="btnSalvar" onAction="#salvarAluno" layoutX="800.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-      <Button id="btnDeletar" layoutX="950.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+      <Button id="btnDeletar" onAction="#deletarAluno" layoutX="950.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
       <Label layoutX="93.0" layoutY="475.0" text="Procurar:">
          <font>
             <Font size="18.0" />
