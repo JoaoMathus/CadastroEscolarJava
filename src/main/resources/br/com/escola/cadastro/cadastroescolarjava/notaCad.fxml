@@ -155,7 +155,7 @@
             </TextField>
          </children>
       </GridPane>
-      <Button layoutX="150.0" layoutY="475.0" mnemonicParsing="false" text="Salvar">
+      <Button id="btnSalvar" layoutX="150.0" layoutY="475.0" mnemonicParsing="false" text="Salvar">
          <font>
             <Font size="14.0" />
          </font>
