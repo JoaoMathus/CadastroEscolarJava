@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="30.0" prefWidth="1100.0">
+         <menus>
+            <Menu id="menuBarra" mnemonicParsing="false" text="Cadastros">
+               <items>
+                  <MenuItem id="menuAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
+                  <MenuItem id="menuTurma" mnemonicParsing="false" text="Criar Turma" />
+                  <MenuItem id="menuNota" mnemonicParsing="false" text="Cadastro de Notas" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <TableView id="tabela" layoutX="20.0" layoutY="548.0" prefHeight="233.0" prefWidth="1063.0">
+         <columns>
+            <TableColumn id="colMatricula" prefWidth="195.0" text="Matrícula" />
+            <TableColumn id="colNome" prefWidth="716.0" text="Nome" />
+            <TableColumn id="colTurma" prefWidth="151.0" text="Turma" />
+         </columns>
+      </TableView>
+      <GridPane id="gridPesqui" layoutX="23.0" layoutY="92.0" prefHeight="129.0" prefWidth="347.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.0" minWidth="94.0" prefWidth="94.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="601.0" minWidth="10.0" prefWidth="253.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ChoiceBox id="choMat" prefHeight="25.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Matrícula:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Matéria:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField id="txtMatri" maxHeight="30.0" maxWidth="250.0" minHeight="30.0" minWidth="250.0" prefHeight="30.0" prefWidth="222.0" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+      </GridPane>
+      <GridPane id="gridNotas" layoutX="23.0" layoutY="241.0" prefHeight="222.0" prefWidth="776.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.0" minWidth="94.0" prefWidth="94.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="170.0" prefWidth="170.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="170.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="170.0" prefWidth="170.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="170.0" prefWidth="170.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label id="lblPriBi" text="Primeiro Bimestre" GridPane.columnIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblSegBi" text="Segundo Bimestre" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblTerBi" text="Terceiro Bimestre" GridPane.columnIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblQuaBi" text="Quarto Bimestre" GridPane.columnIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblAv" text="AV" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblAv1" text="AV1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblProva" text="Prova" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="lblMedia" text="Média" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Spinner id="spinAvPri" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Spinner id="spinProvaQua" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Spinner id="spinProvaTer" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Spinner id="spinProvaSeg" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Spinner id="spinProvaPri" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Spinner id="spinAvQua" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Spinner id="spinAv1Qua" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Spinner id="spinAv1Ter" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Spinner id="spinAv1Seg" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Spinner id="spinAv1Pri" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Spinner id="spinAvTer" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Spinner id="spinAvSeg" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField id="lblMedPri" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField id="lblMedSeg" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField id="lblMedTer" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField id="lblMedQua" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </GridPane>
+      <Button id="btnSalvar" layoutX="150.0" layoutY="475.0" mnemonicParsing="false" text="Salvar">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label id="lblNotasTitulo" layoutX="483.0" layoutY="35.0" text="Notas">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
