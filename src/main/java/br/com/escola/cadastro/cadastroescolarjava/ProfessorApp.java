@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class aluApp extends Application {
+public class ProfessorApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(aluApp.class.getResource("alunoCad.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProfessorApp.class.getResource("professorCad.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Cadastro Escolar");
         stage.setScene(scene);
