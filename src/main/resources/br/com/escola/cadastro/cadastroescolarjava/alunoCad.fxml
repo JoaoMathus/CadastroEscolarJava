@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -17,10 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="30.0" prefWidth="1100.0">
         <menus>
@@ -96,51 +96,66 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField id="txtMatricula" editable="false" maxHeight="30.0" maxWidth="245.0" minHeight="30.0" minWidth="245.0" prefHeight="30.0" prefWidth="231.0" GridPane.columnIndex="1">
+            <TextField id="txtMatricula" fx:id="txtMatricula" editable="false" maxHeight="30.0" maxWidth="245.0" minHeight="30.0" minWidth="245.0" prefHeight="30.0" prefWidth="231.0" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
                <effect>
                   <ColorAdjust brightness="-0.12" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </TextField>
-            <TextField id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField id="txtNome" fx:id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField id="txtTelefone" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField id="txtTelefone" fx:id="txtTelefone" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextField id="txtCelular" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="253.0" prefHeight="253.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField id="txtCelular" fx:id="txtCelular" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="253.0" prefHeight="253.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <DatePicker id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox id="escolhaTurma" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox id="escolhaSangue" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField id="txtCpfResponsavel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <DatePicker id="dataNascimento" fx:id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox id="escolhaTurma" fx:id="escolhaTurma" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox id="escolhaSangue" fx:id="escolhaTipoSanguineo" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="A+" />
+                        <String fx:value="A-" />
+                        <String fx:value="B+" />
+                        <String fx:value="B-" />
+                        <String fx:value="AB+" />
+                        <String fx:value="AB-" />
+                        <String fx:value="O+" />
+                        <String fx:value="O-" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <ChoiceBox id="escolhaSituacao" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ChoiceBox id="escolhaSituacao" fx:id="escolhaSituacao" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Button id="btnPesquisar" onAction="#selecionarPorMatricula" layoutX="50.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
-      <Button id="btnSalvar" onAction="#salvarAluno" layoutX="200.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-      <Button id="btnDeletar" onAction="#deletarAluno" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+      <Button id="btnPesquisar" layoutX="50.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionarPorMatricula" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+      <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" mnemonicParsing="false" onAction="#salvarAluno" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+      <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletarAluno" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
       <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="txtPesqui" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
       <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TableView id="tabelaAlunos" fx:id="tabelaAlunos" layoutX="29.0" layoutY="580.0" prefHeight="210.0" prefWidth="1050.0">
+      <TableView id="tabelaAlunos" fx:id="tabelaAlunos" layoutX="29.0" layoutY="580.0" maxHeight="210.0" maxWidth="1050.0" minHeight="210.0" minWidth="1050.0" prefHeight="210.0" prefWidth="1050.0">
         <columns>
           <TableColumn id="colunaMatricula" fx:id="colunaMatricula" prefWidth="134.0" text="Matrícula" />
           <TableColumn id="colunaNome" fx:id="colunaNome" prefWidth="669.0" text="Nome" />
