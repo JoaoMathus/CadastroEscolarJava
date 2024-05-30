@@ -17,14 +17,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="30.0" prefWidth="1100.0">
         <menus>
           <Menu id="menuBarra" mnemonicParsing="false" text="Cadastros">
             <items>
-                  <MenuItem id="menuAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
-                  <MenuItem id="menuProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
+                  <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
                   <MenuItem id="menuTurma" mnemonicParsing="false" text="Criar Turma" />
                   <MenuItem id="menuNota" mnemonicParsing="false" text="Cadastro de Notas" />
             </items>
@@ -123,24 +126,25 @@
             <ChoiceBox id="escolhaSituacao" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Button id="btnNovo" layoutX="50.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
-      <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-      <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+      <Button id="btnPesquisar" onAction="#selecionarPorMatricula" layoutX="50.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+      <Button id="btnSalvar" onAction="#salvarAluno" layoutX="200.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+      <Button id="btnDeletar" onAction="#deletarAluno" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
       <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <TextField id="txtPesqui" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
+      <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TableView id="tabela" layoutX="29.0" layoutY="580.0" prefHeight="210.0" prefWidth="1050.0">
+      <TableView id="tabelaAlunos" fx:id="tabelaAlunos" layoutX="29.0" layoutY="580.0" prefHeight="210.0" prefWidth="1050.0">
         <columns>
-          <TableColumn id="tabelaMatricula" prefWidth="134.0" text="Matrícula" />
-          <TableColumn id="tabelaNome" prefWidth="669.0" text="Nome" />
-            <TableColumn id="tabelaTurma" prefWidth="200.0" text="Turma" />
+          <TableColumn id="colunaMatricula" fx:id="colunaMatricula" prefWidth="134.0" text="Matrícula" />
+          <TableColumn id="colunaNome" fx:id="colunaNome" prefWidth="669.0" text="Nome" />
+            <TableColumn id="colunaTurma" fx:id="colunaTurma" prefWidth="200.0" text="Turma" />
         </columns>
       </TableView>
       <Label id="lblTitulo" layoutX="393.0" layoutY="25.0" maxHeight="53.0" maxWidth="314.0" minHeight="53.0" minWidth="314.0" prefHeight="53.0" prefWidth="314.0" text="Cadastro de Aluno">

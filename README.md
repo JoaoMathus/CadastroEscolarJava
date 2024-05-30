@@ -4,9 +4,8 @@ O banco de dados escolhido foi o SQLite, sendo acessado através de um driver pe
 Para a interface gráfica, foi escolhido o javafx.
 
 ## A fazer:
-- Implementar todas as classes modeladas até o momento.
+- Modificar os diagramas (Extremamente importante).
 - Adicionar interface gráfica ao projeto.
-- Modificar os diagramas.
 
 ## Ideias adicionais (implementadas se haver tempo antes da entrega)
 - Gráfico mostrando a performance do aluno com base no histórico.
