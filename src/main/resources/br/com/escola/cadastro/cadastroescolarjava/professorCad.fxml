@@ -29,16 +29,17 @@
             </Menu>
          </menus>
       </MenuBar>
-      <GridPane layoutX="2.0" layoutY="26.0" prefHeight="380.0" prefWidth="174.0">
+      <GridPane layoutX="20.0" layoutY="76.0" maxHeight="225.0" maxWidth="668.0" minHeight="225.0" minWidth="668.0" prefHeight="225.0" prefWidth="668.0">
          <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="121.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label id="lblNome" alignment="TOP_RIGHT" text="Nome:">
@@ -61,67 +62,58 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label id="lblCpf" alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="164.0" text="CPF:" GridPane.rowIndex="4">
+            <Label id="lblCpf" alignment="TOP_RIGHT" layoutX="2.0" prefHeight="27.0" prefWidth="164.0" text="CPF:" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-         </children>
-      </GridPane>
-      <GridPane layoutX="184.0" layoutY="29.0" prefHeight="380.0" prefWidth="830.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <DatePicker id="dataNascimento" prefHeight="32.0" prefWidth="174.0" GridPane.rowIndex="3" />
-            <TextField id="txtNome">
+            <TextField id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
-            <TextField id="txtTel" GridPane.rowIndex="1">
+            <TextField id="txtTel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
-            <TextField id="txtCel" GridPane.rowIndex="2">
+            <TextField id="txtCel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
-            <TextField id="txtCpf" GridPane.rowIndex="4">
+            <DatePicker id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField id="txtCpf" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </TextField>
          </children>
       </GridPane>
-      <Button id="btnNovo" layoutX="650.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
-      <Button id="btnSalvar" layoutX="800.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-      <Button id="btnDeletar" layoutX="950.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
-      <Label id="lblProcurar" layoutX="93.0" layoutY="475.0" text="Procurar:">
+      <Button id="btnNovo" layoutX="50.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
+      <Button id="btnSalvar" layoutX="200.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+      <Button id="btnDeletar" layoutX="350.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+      <Label id="lblProcurar" layoutX="17.0" layoutY="512.0" text="Procurar:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="txtPesqui" layoutX="169.0" layoutY="470.0" prefHeight="39.0" prefWidth="245.0" promptText="Digite o CPF">
+      <TextField id="txtPesqui" layoutX="91.0" layoutY="512.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" promptText="Digite o CPF">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </TextField>
-      <TableView id="tabela" layoutX="20.0" layoutY="548.0" prefHeight="233.0" prefWidth="1063.0">
+      <TableView id="tabela" layoutX="25.0" layoutY="548.0" prefHeight="233.0" prefWidth="1050.0">
          <columns>
-            <TableColumn id="colCPF" prefWidth="134.0" text="CPF" />
-            <TableColumn id="colNome" prefWidth="669.0" text="Nome" />
-            <TableColumn id="colTurma" prefWidth="200.0" text="Turma" />
+            <TableColumn id="colCPF" prefWidth="152.0" text="CPF" />
+            <TableColumn id="colNome" prefWidth="674.0" text="Nome" />
+            <TableColumn id="colTurma" prefWidth="235.0" text="Turma" />
          </columns>
       </TableView>
+      <Label id="lblTitulo" layoutX="364.0" layoutY="25.0" maxHeight="53.0" maxWidth="372.0" minHeight="53.0" minWidth="372.0" prefHeight="53.0" prefWidth="372.0" text="Cadastro de Professor">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
