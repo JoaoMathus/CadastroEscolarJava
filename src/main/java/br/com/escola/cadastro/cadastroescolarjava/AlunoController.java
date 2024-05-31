@@ -91,6 +91,8 @@ public class AlunoController {
             return;
         }
 
+        calcularMatricula();
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmação");
         alert.setHeaderText("Confirma esse cadastro?");
@@ -139,6 +141,12 @@ public class AlunoController {
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+
+        if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
+            List<Aluno> todosAlunos = application.getAlunoDao().selecionarTodos();
+            tabelaAlunos.setItems(FXCollections.observableArrayList(todosAlunos));
+            return;
+        }
 
         List<Aluno> alunosFiltrados = application.getAlunoDao().selecionarTodos()
                 .stream().filter(aluno -> aluno.getMatricula().equals(txtPesquisa.getText()))
