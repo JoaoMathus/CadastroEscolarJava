@@ -41,7 +41,7 @@ public class AlunoController {
     @FXML
     private TextField txtPesquisa;
     @FXML
-    private TableView tabelaAlunos;
+    private TableView<Aluno> tabelaAlunos;
     @FXML
     private TableColumn<Aluno, String> colunaMatricula;
     @FXML
@@ -80,9 +80,8 @@ public class AlunoController {
     @FXML
     protected void salvarAluno() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
-                txtMatricula.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
-                txtCelular.getText().isEmpty() || txtCpfResponsavel.getText().isEmpty() ||
-                escolhaTipoSanguineo.getValue().isEmpty()) {
+                txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
+                txtCpfResponsavel.getText().isEmpty() || escolhaTipoSanguineo.getValue().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao salvar aluno");
             alert.setHeaderText("Não foi possível salvar o aluno");
@@ -148,5 +147,15 @@ public class AlunoController {
         ObservableList<Aluno> listaObservavel = FXCollections.observableArrayList(alunosFiltrados);
 
         tabelaAlunos.setItems(listaObservavel);
+    }
+
+    // PROVISÓRIO, É APENAS UM PLACEHOLDER.
+    @FXML
+    protected void calcularMatricula() {
+        if (dataNascimento.getValue().toString().isEmpty() || txtCpfResponsavel.getText().isEmpty()) {
+            return;
+        }
+
+        txtMatricula.setText(dataNascimento.getValue().getYear() + txtCpfResponsavel.getText().substring(8));
     }
 }

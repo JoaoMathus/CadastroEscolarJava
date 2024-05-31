@@ -119,7 +119,7 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <DatePicker id="dataNascimento" fx:id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <DatePicker id="dataNascimento" fx:id="dataNascimento" onAction="#calcularMatricula" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox id="escolhaTurma" fx:id="escolhaTurma" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ChoiceBox id="escolhaSangue" fx:id="escolhaTipoSanguineo" maxHeight="30.0" maxWidth="80.0" minHeight="30.0" minWidth="80.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                 <items>
@@ -135,7 +135,7 @@
                     </FXCollections>
                 </items>
             </ChoiceBox>
-            <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" onAction="#calcularMatricula" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="14.0" />
                </font></TextField>
