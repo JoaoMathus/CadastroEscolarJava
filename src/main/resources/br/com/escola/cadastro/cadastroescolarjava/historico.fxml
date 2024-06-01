@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="borderPane" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" snapToPixel="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane id="anchorPane" maxHeight="800.0" maxWidth="1280.0" minHeight="793.0" minWidth="1280.0" prefHeight="793.0" prefWidth="1280.0">
+         <children>
+            <GridPane id="gridPesqui" layoutX="20.0" layoutY="76.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="245.0" minWidth="245.0" prefWidth="245.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ChoiceBox id="choMat" prefHeight="30.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label id="lblMatricula" text="Matrícula:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblMateria" text="Matéria:" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField id="txtMatri" maxHeight="30.0" maxWidth="245.0" minHeight="30.0" minWidth="245.0" prefHeight="30.0" prefWidth="245.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ChoiceBox id="choAno" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label id="lblAno" text="Ano:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblSit" text="Situação:" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField id="txtSit" editable="false" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+               </children>
+            </GridPane>
+            <Label id="lblTitulo" layoutX="563.0" maxHeight="53.0" maxWidth="154.0" minHeight="53.0" minWidth="154.0" prefHeight="53.0" prefWidth="154.0" text="Histórico">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button id="btnLimpar" layoutX="200.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Limpar" />
+            <Button id="btnBuscar" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Buscar" />
+            <GridPane id="gridNotas" layoutX="170.0" layoutY="380.0">
+              <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" valignment="CENTER" />
+                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" />
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" />
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" />
+                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" />
+              </rowConstraints>
+               <children>
+                  <Label id="lblPriBi" text="Primeiro Bimestre" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblSegBi" text="Segundo Bimestre" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblTerBi" text="Terceiro Bimestre" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblQuaBi" text="Quarto Bimestre" GridPane.columnIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblAv" text="AV" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblAv1" text="AV1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblProva" text="Prova" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblMedia" text="Média" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField id="txtMedPri" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtMedSeg" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtMedTer" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtMedQua" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+                  <TextField id="txtAvPri" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAV1Pri" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtProvaPri" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAvSeg" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAV1Seg" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtProvaSeg" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAvTer" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAV1Ter" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtProvaTer" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAvQua" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtProvaQua" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+                  <TextField id="txtAV1Qua" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust brightness="-0.12" />
+                     </effect>
+                  </TextField>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <MenuBar id="menu" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu id="menuBarra" mnemonicParsing="false" text="Cadastros">
+               <items>
+                  <MenuItem id="menuAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
+                  <MenuItem id="menuTurma" mnemonicParsing="false" text="Criar Turma" />
+                  <MenuItem id="menuNota" mnemonicParsing="false" text="Cadastro de Notas" />
+                  <MenuItem id="menuHist" mnemonicParsing="false" text="Histórico" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
