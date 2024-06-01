@@ -68,47 +68,47 @@ fx:controller="br.com.escola.cadastro.cadastroescolarjava.ProfessorController">
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1">
+            <TextField id="txtNome" fx:id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField id="txtTel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField id="txtTel"  fx:id="txtTelefone" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField id="txtCel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField id="txtCel" fx:id="txtCelular" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <DatePicker id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField id="txtCpf" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <DatePicker id="dataNascimento" fx:id="dataNascimento" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField id="txtCpf"  fx:id="txtCpf" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
          </children>
       </GridPane>
-      <Button id="btnNovo" layoutX="50.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
-      <Button id="btnSalvar" layoutX="200.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-      <Button id="btnDeletar" layoutX="350.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
-      <Label id="lblProcurar" layoutX="17.0" layoutY="512.0" text="Procurar:">
+      <Button id="btnPesquisar" layoutX="50.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionarPorCpf" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+      <Button id="btnSalvar" layoutX="200.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvarProfessor" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+      <Button id="btnDeletar" layoutX="350.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#deletarProfessor" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+      <Label layoutX="17.0" layoutY="512.0" text="Procurar:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="txtPesqui" layoutX="91.0" layoutY="512.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" promptText="Digite o CPF">
+      <TextField id="txtPesqui" fx:id="txtPesquisa" layoutX="91.0" layoutY="512.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" promptText="Digite o CPF">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <TableView id="tabela" layoutX="25.0" layoutY="548.0" prefHeight="233.0" prefWidth="1050.0">
+      <TableView id="tabelaProfessores" fx:id="tabelaProfessores" layoutX="25.0" layoutY="548.0" prefHeight="233.0" prefWidth="1050.0">
          <columns>
-            <TableColumn id="colCPF" prefWidth="152.0" text="CPF" />
-            <TableColumn id="colNome" prefWidth="674.0" text="Nome" />
-            <TableColumn id="colTurma" prefWidth="235.0" text="Turma" />
+            <TableColumn id="colCPF" fx:id="colunaCpf" prefWidth="152.0" text="CPF" />
+            <TableColumn id="colNome" fx:id="colunaNome" prefWidth="674.0" text="Nome" />
+            <TableColumn id="colTurma" fx:id="colunaTurma" prefWidth="235.0" text="Turma" />
          </columns>
       </TableView>
       <Label id="lblTitulo" layoutX="364.0" layoutY="25.0" maxHeight="53.0" maxWidth="372.0" minHeight="53.0" minWidth="372.0" prefHeight="53.0" prefWidth="372.0" text="Cadastro de Professor">
