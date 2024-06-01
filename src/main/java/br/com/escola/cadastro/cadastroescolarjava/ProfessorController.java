@@ -104,4 +104,30 @@ public class ProfessorController {
         application.getProfessorDao().selecionarTodos().forEach(System.out::println);
     }
 
+    @FXML
+    protected void deletarProfessor() {
+        TextInputDialog dialogo = new TextInputDialog();
+        dialogo.setTitle("Deletar um professor");
+        dialogo.setHeaderText("Digite o cpf do professor que você quer deletar");
+        dialogo.setContentText("Cpf:");
+
+        Optional<String> resultado = dialogo.showAndWait();
+        resultado.ifPresent(cpf -> {
+            Alert confirma = new Alert(Alert.AlertType.CONFIRMATION);
+            confirma.setTitle("Deletar professor");
+            confirma.setHeaderText("Deseja mesmo deletar esse professor?");
+            confirma.setContentText("O professor será apagado do banco de dados");
+
+            Optional<ButtonType> resposta = confirma.showAndWait();
+            if (resposta.get() == ButtonType.OK) {
+                List<Professor> professores = application.getProfessorDao().selecionarTodos();
+                for (Professor professor : professores) {
+                    if (professor.getCpf().equals(cpf)) {
+                        application.getProfessorDao().deletar(professor.getId());
+                    }
+                }
+            }
+        });
+    }
+
 }
