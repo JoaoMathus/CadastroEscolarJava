@@ -6,7 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -41,7 +49,7 @@ public class AlunoController {
     @FXML
     private TextField txtPesquisa;
     @FXML
-    private TableView tabelaAlunos;
+    private TableView<Aluno> tabelaAlunos;
     @FXML
     private TableColumn<Aluno, String> colunaMatricula;
     @FXML
@@ -80,9 +88,8 @@ public class AlunoController {
     @FXML
     protected void salvarAluno() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
-                txtMatricula.getText().isEmpty() || txtTelefone.getText().isEmpty() ||
-                txtCelular.getText().isEmpty() || txtCpfResponsavel.getText().isEmpty() ||
-                escolhaTipoSanguineo.getValue().isEmpty()) {
+                txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
+                txtCpfResponsavel.getText().isEmpty() || escolhaTipoSanguineo.getValue().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao salvar aluno");
             alert.setHeaderText("Não foi possível salvar o aluno");
@@ -91,6 +98,8 @@ public class AlunoController {
             alert.showAndWait();
             return;
         }
+
+        calcularMatricula();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmação");
@@ -141,6 +150,12 @@ public class AlunoController {
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
 
+        if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
+            List<Aluno> todosAlunos = application.getAlunoDao().selecionarTodos();
+            tabelaAlunos.setItems(FXCollections.observableArrayList(todosAlunos));
+            return;
+        }
+
         List<Aluno> alunosFiltrados = application.getAlunoDao().selecionarTodos()
                 .stream().filter(aluno -> aluno.getMatricula().equals(txtPesquisa.getText()))
                 .toList();
@@ -148,5 +163,15 @@ public class AlunoController {
         ObservableList<Aluno> listaObservavel = FXCollections.observableArrayList(alunosFiltrados);
 
         tabelaAlunos.setItems(listaObservavel);
+    }
+
+    // PROVISÓRIO, É APENAS UM PLACEHOLDER.
+    @FXML
+    protected void calcularMatricula() {
+        if (dataNascimento.getValue().toString().isEmpty() || txtCpfResponsavel.getText().isEmpty()) {
+            return;
+        }
+
+        txtMatricula.setText(dataNascimento.getValue().getYear() + txtCpfResponsavel.getText().substring(8));
     }
 }

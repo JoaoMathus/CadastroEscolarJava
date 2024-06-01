@@ -4,8 +4,9 @@ O banco de dados escolhido foi o SQLite, sendo acessado através de um driver pe
 Para a interface gráfica, foi escolhido o javafx.
 
 ## A fazer:
-- Modificar os diagramas (Extremamente importante).
-- Adicionar interface gráfica ao projeto.
+- Modificar os diagramas (Extremamente importante, pois estão desatualizados).
+- Terminar de implementar a interface gráfica do projeto.
+- Adicionar as lógicas necessárias (geração de matrícula, geração de número de turma).
 
 ## Ideias adicionais (implementadas se haver tempo antes da entrega)
 - Gráfico mostrando a performance do aluno com base no histórico.
