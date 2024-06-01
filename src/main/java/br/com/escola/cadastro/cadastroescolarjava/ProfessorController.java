@@ -6,7 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -128,6 +135,27 @@ public class ProfessorController {
                 }
             }
         });
+    }
+
+    @FXML
+    protected void selecionarPorCpf() {
+        colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+
+        if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
+            List<Professor> todosProfessores = application.getProfessorDao().selecionarTodos();
+            tabelaProfessores.setItems(FXCollections.observableArrayList(todosProfessores));
+            return;
+        }
+
+        List<Professor> professoresFiltrados = application.getProfessorDao().selecionarTodos()
+                .stream().filter(professor -> professor.getCpf().equals(txtPesquisa.getText()))
+                .toList();
+
+        ObservableList<Professor> listaObservavel = FXCollections.observableArrayList(professoresFiltrados);
+
+        tabelaProfessores.setItems(listaObservavel);
     }
 
 }
