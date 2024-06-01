@@ -1,7 +1,6 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 
 import java.io.IOException;
@@ -66,7 +65,7 @@ public class AlunoController {
     @FXML
     protected void irParaAluno() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
-        AnchorPane root = fxmlLoader.load();
+        BorderPane root = fxmlLoader.load();
 
         AlunoController alunoController = fxmlLoader.getController();
         alunoController.setApplication(application);
@@ -77,7 +76,7 @@ public class AlunoController {
     @FXML
     protected void irParaProfessor() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
-        AnchorPane root = fxmlLoader.load();
+        BorderPane root = fxmlLoader.load();
 
         ProfessorController professorController = fxmlLoader.getController();
         professorController.setApplication(application);
