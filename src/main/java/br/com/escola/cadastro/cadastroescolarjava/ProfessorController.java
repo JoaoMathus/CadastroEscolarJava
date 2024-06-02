@@ -1,6 +1,5 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Professor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -50,7 +48,7 @@ public class ProfessorController {
     @FXML
     private TableColumn<Professor, String> colunaNome;
     @FXML
-    private TableColumn<Professor, String> colunaTurma;
+    private TableColumn<Professor, String> colunaCelular;
 
 
     private AluApp application;
@@ -102,11 +100,9 @@ public class ProfessorController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // TODO: Adicionar lógica para resgatar uma turma pelo número (que é o control da tela de cadastro).
-            // TODO: e então resgatar a "série" pelo número e adicioná-lo ao objeto do aluno.
-            application.getProfessorDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
+            application.getProfessorDao().inserir(txtNome.getText(), txtCpf.getText(),
                     txtTelefone.getText(), txtCelular.getText(),
-                    txtCpf.getText());
+                    dataNascimento.getValue().toString());
         }
 
         application.getProfessorDao().selecionarTodos().forEach(System.out::println);
@@ -142,7 +138,7 @@ public class ProfessorController {
     protected void selecionarPorCpf() {
         colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+        colunaCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
 
         if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
             List<Professor> todosProfessores = application.getProfessorDao().selecionarTodos();
