@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,14 +43,13 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    private static int numeroAlunos;
+    private final int tamanhoMatricula = 12;
 
     private SistemaCadastro application;
 
     public void setApplication(SistemaCadastro application) {
         this.application = application;
         mostrarTodos();
-        numeroAlunos = application.getAlunoDao().selecionarTodos().size();
     }
 
     public void initialize() {
@@ -158,7 +158,6 @@ public class AlunoController {
             alert.setContentText("Certifique-se de preencher todos os campos!");
 
             alert.showAndWait();
-            numeroAlunos--;
             return;
         }
 
@@ -177,8 +176,6 @@ public class AlunoController {
             application.getAlunoDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
                     txtMatricula.getText(), txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(),
                     escolhaTipoSanguineo.getValue(), "Segunda", 1);
-        } else {
-            numeroAlunos--;
         }
 
         limparTudo();
@@ -246,13 +243,29 @@ public class AlunoController {
     protected void calcularMatricula() {
         String ano = Integer.toString(LocalDate.now().getYear());
         String mes;
+        int horario;
+        String horaCadastrado;
+        String posicaoDoAluno;
 
         if (LocalDate.now().getMonthValue() < 10)
             mes = "0" + LocalDate.now().getMonthValue();
         else
             mes = Integer.toString(LocalDate.now().getMonthValue());
 
-        txtMatricula.setText(ano + mes + txtCpfResponsavel.getText().substring(8) + numeroAlunos);
+        horario = LocalDateTime.now().getHour();
+        if (horario < 10) {
+            horaCadastrado = "0" + horario;
+        } else {
+            horaCadastrado = Integer.toString(horario);
+        }
+
+        if (Aluno.getNumeroCriados() > 9999)
+            posicaoDoAluno = "0000";
+        else
+            posicaoDoAluno = String.format("%04d", Aluno.getNumeroCriados());
+
+        txtMatricula.setText(ano + mes + horaCadastrado + posicaoDoAluno);
+        System.out.println(posicaoDoAluno);
     }
 
     private void limparTudo() {

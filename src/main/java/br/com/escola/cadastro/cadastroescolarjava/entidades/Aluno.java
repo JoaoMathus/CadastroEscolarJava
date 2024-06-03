@@ -8,6 +8,8 @@ public class Aluno extends Pessoa {
     private String cpfDoResponsavel;
     private boolean aprovado;
 
+    private static long numeroCriados = 0;
+
     public Aluno() {}
 
     public Aluno(int id, String nome, String dataNascimento,
@@ -21,6 +23,8 @@ public class Aluno extends Pessoa {
         this.tipoSanguineo = tipoSanguineo;
         this.cpfDoResponsavel = cpfDoResponsavel;
         this.aprovado = aprovado;
+
+        numeroCriados++;
     }
 
     public String getMatricula() {
@@ -69,6 +73,10 @@ public class Aluno extends Pessoa {
 
     public void setAprovado(boolean aprovado) {
         this.aprovado = aprovado;
+    }
+
+    public static long getNumeroCriados() {
+        return numeroCriados;
     }
 
     @Override
