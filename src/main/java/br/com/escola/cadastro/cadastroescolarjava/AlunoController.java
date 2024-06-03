@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+// Printar todos os alunos na tabela quando salvar um aluno.
 public class AlunoController {
     @FXML
     private MenuItem menuAluno;
@@ -80,6 +81,39 @@ public class AlunoController {
 
         ProfessorController professorController = fxmlLoader.getController();
         professorController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    protected void irParaTurma() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        TurmaController turmaController = fxmlLoader.getController();
+        turmaController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    protected void irParaNotas() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        NotaController notaController = fxmlLoader.getController();
+        notaController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    protected void irParaHistorico() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        HistoricoController historicoController = fxmlLoader.getController();
+        historicoController.setApplication(application);
 
         application.getPrimaryStage().getScene().setRoot(root);
     }

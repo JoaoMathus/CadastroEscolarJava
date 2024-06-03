@@ -165,9 +165,9 @@
             <items>
                   <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
                   <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
-                  <MenuItem id="menuTurma" mnemonicParsing="false" text="Criar Turma" />
-                  <MenuItem id="menuNota" mnemonicParsing="false" text="Cadastro de Notas" />
-                  <MenuItem id="menuHist" mnemonicParsing="false" text="Histórico" />
+                  <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
+                  <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
+                  <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
             </items>
           </Menu>
         </menus>
