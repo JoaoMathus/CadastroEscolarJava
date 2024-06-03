@@ -6,14 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
@@ -22,9 +15,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Validar input das outras telas (CPF, datas)!!!
-// TODO: Aplicar limites do input dos números de telefone e celular e de cpf das telas!
-// TODO: Na confirmação de apagar, mostrar o nome do aluno.
 public class AlunoController {
     @FXML
     private TextField txtMatricula;
@@ -51,7 +41,7 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    static int numeroAlunos = 0;
+    private static int numeroAlunos = 0;
 
     private SistemaCadastro application;
 
@@ -87,8 +77,14 @@ public class AlunoController {
     // Aplica a validação do input dos campos numéricos
     private void aplicarValidacao(TextField tf) {
         tf.textProperty().addListener((observable, valorAntigo, valorNovo) -> {
+            // Limitando a apenas valores numéricos
             if (!valorNovo.matches("\\d*")) {
                 tf.setText(valorNovo.replaceAll("[^\\d]", ""));
+            }
+
+            // Limitando ao número máximo de valores na entrada
+            if (tf.textProperty().getValue().length() > 11) {
+                tf.setText(valorAntigo);
             }
         });
     }
