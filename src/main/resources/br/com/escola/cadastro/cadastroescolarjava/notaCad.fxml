@@ -171,11 +171,11 @@
          <menus>
             <Menu id="menu" mnemonicParsing="false" text="Cadastros">
                <items>
-                  <MenuItem id="menuAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
-                  <MenuItem id="menuProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
-                  <MenuItem id="menuTurma" mnemonicParsing="false" text="Criar Turma" />
-                  <MenuItem id="menuNota" mnemonicParsing="false" text="Cadastro de Notas" />
-                  <MenuItem id="menuHist" mnemonicParsing="false" text="Histórico" />
+                  <MenuItem id="menuAluno" onAction="#irParaAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" onAction="#irParaProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
+                  <MenuItem id="menuTurma" onAction="#irParaTurma" mnemonicParsing="false" text="Criar Turma" />
+                  <MenuItem id="menuNota" onAction="#irParaNotas" mnemonicParsing="false" text="Cadastro de Notas" />
+                  <MenuItem id="menuHist" onAction="#irParaHistorico" mnemonicParsing="false" text="Histórico" />
                </items>
             </Menu>
          </menus>
