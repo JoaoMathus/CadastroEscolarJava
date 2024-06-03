@@ -9,20 +9,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.util.converter.LocalDateStringConverter;
 
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 // TODO: Printar todos os alunos na tabela quando salvar um aluno.
 // TODO: Aparecer todos os cadastrados na tabela automaticamente.
@@ -30,14 +27,6 @@ import java.util.Random;
 // TODO: Aplicar limites do input dos números de telefone e celular e de cpf das telas!
 // TODO: Na confirmação de apagar, mostrar o nome do aluno.
 public class AlunoController {
-    @FXML
-    private MenuItem menuAluno;
-    @FXML
-    private MenuItem menuProfessor;
-    @FXML
-    private MenuItem menuTurma;
-    @FXML
-    private MenuItem menuNota;
     @FXML
     private TextField txtMatricula;
     @FXML
@@ -63,34 +52,44 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    static int vezesFeito = 0;
+    static int numeroAlunos = 0;
 
     private SistemaCadastro application;
 
     public void setApplication(SistemaCadastro application) {
         this.application = application;
+        mostrarTodos();
     }
 
     public void initialize() {
-        validarEntrada(txtTelefone);
-        validarEntrada(txtCelular);
-        validarEntrada(txtCpfResponsavel);
+        aplicarValidacao(txtTelefone);
+        aplicarValidacao(txtCelular);
+        aplicarValidacao(txtCpfResponsavel);
 
-        tabelaAlunos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                txtNome.setText(newSelection.getNome());
-                txtMatricula.setText(newSelection.getMatricula());
-                txtTelefone.setText(newSelection.getTelefone());
-                txtCelular.setText(newSelection.getCelular());
-                txtCpfResponsavel.setText(newSelection.getCpfDoResponsavel());
+        // Iniciando as colunas da tabela
+        colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+
+        // Quando clicar em uma linha da tabela,
+        // os dados serão printados nos campos
+        // para permitir atualização dos dados
+        tabelaAlunos.getSelectionModel().selectedItemProperty().addListener((obs, selecaoAntiga, novaSelecao) -> {
+            if (novaSelecao != null) {
+                txtNome.setText(novaSelecao.getNome());
+                txtMatricula.setText(novaSelecao.getMatricula());
+                txtTelefone.setText(novaSelecao.getTelefone());
+                txtCelular.setText(novaSelecao.getCelular());
+                txtCpfResponsavel.setText(novaSelecao.getCpfDoResponsavel());
             }
         });
     }
 
-    private void validarEntrada(TextField tf) {
-        tf.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                tf.setText(newValue.replaceAll("[^\\d]", ""));
+    // Aplica a validação do input dos campos numéricos
+    private void aplicarValidacao(TextField tf) {
+        tf.textProperty().addListener((observable, valorAntigo, valorNovo) -> {
+            if (!valorNovo.matches("\\d*")) {
+                tf.setText(valorNovo.replaceAll("[^\\d]", ""));
             }
         });
     }
@@ -162,9 +161,11 @@ public class AlunoController {
             alert.setContentText("Certifique-se de preencher todos os campos!");
 
             alert.showAndWait();
+            numeroAlunos--;
             return;
         }
 
+        // Aplica o algoritmo para gerar a matrícula
         calcularMatricula();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -179,10 +180,12 @@ public class AlunoController {
             application.getAlunoDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
                     txtMatricula.getText(), txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(),
                     escolhaTipoSanguineo.getValue(), "Segunda", 1);
+        } else {
+            numeroAlunos--;
         }
 
-        application.getAlunoDao().selecionarTodos().forEach(System.out::println);
         limparTudo();
+        mostrarTodos();
     }
 
     @FXML
@@ -209,17 +212,14 @@ public class AlunoController {
                 }
             }
         });
+
+        mostrarTodos();
     }
 
     @FXML
     protected void selecionarPorMatricula() {
-        colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
-
         if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
-            List<Aluno> todosAlunos = application.getAlunoDao().selecionarTodos();
-            tabelaAlunos.setItems(FXCollections.observableArrayList(todosAlunos));
+            mostrarTodos();
             return;
         }
 
@@ -232,17 +232,21 @@ public class AlunoController {
         tabelaAlunos.setItems(listaObservavel);
     }
 
-    // PROVISÓRIO, É APENAS UM PLACEHOLDER.
     @FXML
     protected void calcularMatricula() {
         if (dataNascimento.getValue().toString().isEmpty() || txtCpfResponsavel.getText().isEmpty()) {
             return;
         }
 
-        vezesFeito++;
+        String mes;
 
-        txtMatricula.setText(dataNascimento.getValue().getYear() + txtCpfResponsavel.getText().substring(8)
-        + vezesFeito);
+        if (dataNascimento.getValue().getMonthValue() < 10)
+            mes = "0" + dataNascimento.getValue().getMonthValue();
+        else
+            mes = Integer.toString(dataNascimento.getValue().getMonthValue());
+
+        txtMatricula.setText(dataNascimento.getValue().getYear() + mes +
+                txtCpfResponsavel.getText().substring(8) + numeroAlunos++);
     }
 
     private void limparTudo() {
@@ -254,5 +258,9 @@ public class AlunoController {
         txtCpfResponsavel.setText("");
         dataNascimento.setValue(null);
         escolhaTipoSanguineo.setValue("");
+    }
+
+    private void mostrarTodos() {
+        tabelaAlunos.setItems(FXCollections.observableArrayList(application.getAlunoDao().selecionarTodos()));
     }
 }
