@@ -1,6 +1,7 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
+import br.com.escola.cadastro.cadastroescolarjava.entidades.Pessoa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,8 +22,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Printar todos os alunos na tabela quando salvar um aluno.
-// TODO: Aparecer todos os cadastrados na tabela automaticamente.
 // TODO: Validar input das outras telas (CPF, datas)!!!
 // TODO: Aplicar limites do input dos números de telefone e celular e de cpf das telas!
 // TODO: Na confirmação de apagar, mostrar o nome do aluno.
@@ -197,22 +196,35 @@ public class AlunoController {
 
         Optional<String> resultado = dialogo.showAndWait();
         resultado.ifPresent(matricula -> {
+            List<Aluno> listaAlunos = application.getAlunoDao().selecionarTodos()
+                    .stream().filter(a -> a.getMatricula().equals(matricula)).toList();
+            List<String> nomes = listaAlunos.stream().map(Pessoa::getNome).toList();
+            StringBuilder mensagem = new StringBuilder();
+            mensagem.append("Deseja mesmo deletar ");
+            if (nomes.size() == 1) {
+                mensagem.append("esse aluno: " + nomes.getFirst() + "?");
+            } else {
+                mensagem.append("esses alunos: ");
+                for (int i = 0; i < nomes.size(); i++) {
+                    mensagem.append(nomes.get(i));
+                    mensagem.append(", ");
+                }
+                mensagem.append(nomes.getLast());
+                mensagem.append("?");
+            }
+
             Alert confirma = new Alert(Alert.AlertType.CONFIRMATION);
             confirma.setTitle("Deletar aluno");
-            confirma.setHeaderText("Deseja mesmo deletar esse aluno?");
+            confirma.setHeaderText(mensagem.toString());
             confirma.setContentText("O aluno será apagado do banco de dados");
 
             Optional<ButtonType> resposta = confirma.showAndWait();
             if (resposta.get() == ButtonType.OK) {
-                List<Aluno> alunos = application.getAlunoDao().selecionarTodos();
-                for (Aluno aluno : alunos) {
-                    if (aluno.getMatricula().equals(matricula)) {
-                        application.getAlunoDao().deletar(aluno.getId());
-                    }
-                }
+                listaAlunos.forEach(a -> application.getAlunoDao().deletar(a.getId()));
             }
         });
 
+        limparTudo();
         mostrarTodos();
     }
 
