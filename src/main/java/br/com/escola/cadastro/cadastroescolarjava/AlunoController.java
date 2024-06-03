@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-// Printar todos os alunos na tabela quando salvar um aluno.
+// TODO: Printar todos os alunos na tabela quando salvar um aluno.
+// TODO: Validar input das outras telas!!!
+// TODO: Aplicar limites do input dos números de telefone e celular e de cpf das telas!
 public class AlunoController {
     @FXML
     private MenuItem menuAluno;
@@ -63,7 +65,22 @@ public class AlunoController {
         this.application = application;
     }
 
-    @FXML
+    public void initialize() {
+        validarEntrada(txtTelefone);
+        validarEntrada(txtCelular);
+        validarEntrada(txtCpfResponsavel);
+    }
+
+    private void validarEntrada(TextField tf) {
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                tf.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
+
+@FXML
     protected void irParaAluno() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
         BorderPane root = fxmlLoader.load();
