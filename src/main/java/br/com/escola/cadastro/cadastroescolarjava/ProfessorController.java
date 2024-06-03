@@ -78,6 +78,38 @@ public class ProfessorController {
 
         application.getPrimaryStage().getScene().setRoot(root);
     }
+    @FXML
+    protected void irParaTurma() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        TurmaController turmaController = fxmlLoader.getController();
+        turmaController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    protected void irParaNotas() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        NotaController notaController = fxmlLoader.getController();
+        notaController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
+
+    @FXML
+    protected void irParaHistorico() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        HistoricoController historicoController = fxmlLoader.getController();
+        historicoController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
 
     @FXML
     protected void salvarProfessor() {
