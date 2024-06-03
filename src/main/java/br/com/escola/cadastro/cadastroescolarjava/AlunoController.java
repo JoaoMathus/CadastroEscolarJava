@@ -74,6 +74,16 @@ public class AlunoController {
                 txtCpfResponsavel.setText(novaSelecao.getCpfDoResponsavel());
             }
         });
+
+        // Evitar coisas interessantemente impossíveis (o aluno ter nascido em um tempo
+        // no futuro). Pois é, sem viajantes do futuro no nosso sistema...
+        dataNascimento.setDayCellFactory(d -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean vazio) {
+                super.updateItem(item, vazio);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
     }
 
     // Aplica a validação do input dos campos numéricos
