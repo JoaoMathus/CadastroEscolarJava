@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class HistoricoController {
 
-    private AluApp application;
+    private SistemaCadastro application;
 
-    public void setApplication(AluApp application) {
+    public void setApplication(SistemaCadastro application) {
         this.application = application;
     }
 

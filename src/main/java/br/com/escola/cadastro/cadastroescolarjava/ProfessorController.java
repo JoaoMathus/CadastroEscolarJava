@@ -51,9 +51,9 @@ public class ProfessorController {
     private TableColumn<Professor, String> colunaCelular;
 
 
-    private AluApp application;
+    private SistemaCadastro application;
 
-    public void setApplication(AluApp application) {
+    public void setApplication(SistemaCadastro application) {
         this.application = application;
     }
 

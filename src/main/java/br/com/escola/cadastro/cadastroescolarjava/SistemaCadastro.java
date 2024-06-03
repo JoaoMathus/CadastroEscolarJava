@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AluApp extends Application {
+public class SistemaCadastro extends Application {
     private Stage primaryStage;
     private ProfessorDao professorDao;
     private TurmaDao turmaDao;
@@ -19,7 +19,7 @@ public class AluApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(AluApp.class.getResource("alunoCad.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SistemaCadastro.class.getResource("alunoCad.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Cadastro Escolar");
         primaryStage.setScene(scene);

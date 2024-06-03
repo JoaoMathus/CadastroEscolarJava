@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class NotaController {
 
-    private AluApp application;
+    private SistemaCadastro application;
 
-    public void setApplication(AluApp application) {
+    public void setApplication(SistemaCadastro application) {
         this.application = application;
     }
 

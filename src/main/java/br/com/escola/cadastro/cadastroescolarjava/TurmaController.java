@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class TurmaController {
 
-    private AluApp application;
-    public void setApplication(AluApp application) {
+    private SistemaCadastro application;
+    public void setApplication(SistemaCadastro application) {
         this.application = application;
     }
 

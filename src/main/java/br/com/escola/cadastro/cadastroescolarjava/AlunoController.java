@@ -57,9 +57,9 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    private AluApp application;
+    private SistemaCadastro application;
 
-    public void setApplication(AluApp application) {
+    public void setApplication(SistemaCadastro application) {
         this.application = application;
     }
 
