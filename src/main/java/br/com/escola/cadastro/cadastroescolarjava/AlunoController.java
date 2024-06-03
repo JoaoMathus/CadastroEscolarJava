@@ -16,15 +16,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.util.converter.LocalDateStringConverter;
 
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 // TODO: Printar todos os alunos na tabela quando salvar um aluno.
-// TODO: Validar input das outras telas!!!
+// TODO: Aparecer todos os cadastrados na tabela automaticamente.
+// TODO: Validar input das outras telas (CPF, datas)!!!
 // TODO: Aplicar limites do input dos números de telefone e celular e de cpf das telas!
+// TODO: Na confirmação de apagar, mostrar o nome do aluno.
 public class AlunoController {
     @FXML
     private MenuItem menuAluno;
@@ -59,6 +63,8 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
+    static int vezesFeito = 0;
+
     private SistemaCadastro application;
 
     public void setApplication(SistemaCadastro application) {
@@ -69,6 +75,16 @@ public class AlunoController {
         validarEntrada(txtTelefone);
         validarEntrada(txtCelular);
         validarEntrada(txtCpfResponsavel);
+
+        tabelaAlunos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                txtNome.setText(newSelection.getNome());
+                txtMatricula.setText(newSelection.getMatricula());
+                txtTelefone.setText(newSelection.getTelefone());
+                txtCelular.setText(newSelection.getCelular());
+                txtCpfResponsavel.setText(newSelection.getCpfDoResponsavel());
+            }
+        });
     }
 
     private void validarEntrada(TextField tf) {
@@ -136,7 +152,7 @@ public class AlunoController {
     }
 
     @FXML
-    protected void salvarAluno() {
+    protected void salvarAluno() throws IOException {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
                 txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
                 txtCpfResponsavel.getText().isEmpty() || escolhaTipoSanguineo.getValue().isEmpty()) {
@@ -166,6 +182,7 @@ public class AlunoController {
         }
 
         application.getAlunoDao().selecionarTodos().forEach(System.out::println);
+        limparTudo();
     }
 
     @FXML
@@ -222,6 +239,20 @@ public class AlunoController {
             return;
         }
 
-        txtMatricula.setText(dataNascimento.getValue().getYear() + txtCpfResponsavel.getText().substring(8));
+        vezesFeito++;
+
+        txtMatricula.setText(dataNascimento.getValue().getYear() + txtCpfResponsavel.getText().substring(8)
+        + vezesFeito);
+    }
+
+    private void limparTudo() {
+        txtMatricula.setText("");
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtCelular.setText("");
+        txtTelefone.setText("");
+        txtCpfResponsavel.setText("");
+        dataNascimento.setValue(null);
+        escolhaTipoSanguineo.setValue("");
     }
 }

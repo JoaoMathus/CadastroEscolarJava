@@ -107,18 +107,18 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Spinner id="spinAvPri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Spinner id="spinProvaQua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <Spinner id="spinProvaTer" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Spinner id="spinProvaSeg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Spinner id="spinProvaPri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Spinner id="spinAvQua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <Spinner id="spinAv1Qua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <Spinner id="spinAv1Ter" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Spinner id="spinAv1Seg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Spinner id="spinAv1Pri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Spinner id="spinAvTer" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Spinner id="spinAvSeg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Spinner id="spinAvPri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1" editable="true" max="10" min="0" />
+                  <Spinner id="spinProvaQua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="3" editable="true" />
+                  <Spinner id="spinProvaTer" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="3" editable="true" />
+                  <Spinner id="spinProvaSeg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="3" editable="true" />
+                  <Spinner id="spinProvaPri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3" editable="true" />
+                  <Spinner id="spinAvQua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="1" editable="true" />
+                  <Spinner id="spinAv1Qua" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="2" editable="true" />
+                  <Spinner id="spinAv1Ter" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="2" editable="true" />
+                  <Spinner id="spinAv1Seg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2" editable="true" />
+                  <Spinner id="spinAv1Pri" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" editable="true" />
+                  <Spinner id="spinAvTer" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="1" editable="true" />
+                  <Spinner id="spinAvSeg" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1" editable="true" />
                   <TextField id="txtMedPri" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
