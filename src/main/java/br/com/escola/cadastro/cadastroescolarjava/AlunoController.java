@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,13 +42,14 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    private static int numeroAlunos = 0;
+    private static int numeroAlunos;
 
     private SistemaCadastro application;
 
     public void setApplication(SistemaCadastro application) {
         this.application = application;
         mostrarTodos();
+        numeroAlunos = application.getAlunoDao().selecionarTodos().size();
     }
 
     public void initialize() {
@@ -242,19 +244,15 @@ public class AlunoController {
 
     @FXML
     protected void calcularMatricula() {
-        if (dataNascimento.getValue().toString().isEmpty() || txtCpfResponsavel.getText().isEmpty()) {
-            return;
-        }
-
+        String ano = Integer.toString(LocalDate.now().getYear());
         String mes;
 
-        if (dataNascimento.getValue().getMonthValue() < 10)
-            mes = "0" + dataNascimento.getValue().getMonthValue();
+        if (LocalDate.now().getMonthValue() < 10)
+            mes = "0" + LocalDate.now().getMonthValue();
         else
-            mes = Integer.toString(dataNascimento.getValue().getMonthValue());
+            mes = Integer.toString(LocalDate.now().getMonthValue());
 
-        txtMatricula.setText(dataNascimento.getValue().getYear() + mes +
-                txtCpfResponsavel.getText().substring(8) + numeroAlunos++);
+        txtMatricula.setText(ano + mes + txtCpfResponsavel.getText().substring(8) + numeroAlunos);
     }
 
     private void limparTudo() {
