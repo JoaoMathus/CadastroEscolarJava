@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class turmaApp extends Application {
+public class HistoricoApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(turmaApp.class.getResource("turmaCad.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HistoricoApp.class.getResource("historico.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Cadastro Escolar");
         stage.setScene(scene);
