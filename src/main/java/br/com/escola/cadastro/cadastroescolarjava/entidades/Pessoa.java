@@ -5,15 +5,17 @@ public abstract class Pessoa {
     private String nome;
     private String telefone;
     private String celular;
+    private String cpf;
     private String dataNascimento;
 
     protected Pessoa() {}
 
-    protected Pessoa(int id, String nome, String telefone, String celular, String dataNascimento) {
+    protected Pessoa(int id, String nome, String telefone, String celular, String cpf, String dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.celular = celular;
+        this.cpf = cpf;
         this.dataNascimento = dataNascimento;
     }
 
@@ -43,6 +45,14 @@ public abstract class Pessoa {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getDataNascimento() {
