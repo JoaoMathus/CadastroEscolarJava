@@ -5,16 +5,16 @@ public class Bimestre {
     private float teste;
     private float prova;
     private float pontoDeParticipacao;
-    private int idAluno;
+    private int idDisciplina;
 
     public Bimestre() {}
 
-    public Bimestre(int id, float teste, float prova, float pontoDeParticipacao, int idAluno) {
+    public Bimestre(int id, float teste, float prova, float pontoDeParticipacao, int idDisciplina) {
         this.id = id;
         this.teste = teste;
         this.prova = prova;
         this.pontoDeParticipacao = pontoDeParticipacao;
-        this.idAluno = idAluno;
+        this.idDisciplina = idDisciplina;
     }
 
     public int getId() {
@@ -45,12 +45,12 @@ public class Bimestre {
         this.pontoDeParticipacao = pontoDeParticipacao;
     }
 
-    public int getIdAluno() {
-        return idAluno;
+    public int getIdDisciplina() {
+        return idDisciplina;
     }
 
-    public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
+    public void setIdDisciplina(int idDisciplina) {
+        this.idDisciplina = idDisciplina;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Bimestre {
                 ", teste=" + teste +
                 ", prova=" + prova +
                 ", pontoDeParticipacao=" + pontoDeParticipacao +
-                ", idAluno=" + idAluno +
+                ", idDisciplina=" + idDisciplina +
                 '}';
     }
 }

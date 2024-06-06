@@ -104,6 +104,8 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
             stmt.setString(8, a.getTipoSanguineo());
             stmt.setInt(9, a.getIdTurma());
             stmt.setInt(10, a.getId());
+
+            stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro atualizando o aluno: " + ex.getMessage());
         }
