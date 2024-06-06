@@ -123,7 +123,7 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
-                        <TextField id="txtCpf" fx:id="txtCpfResponsavel1" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField id="txtCpf" fx:id="txtCpf" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <font>
                                 <Font size="14.0" />
                             </font>

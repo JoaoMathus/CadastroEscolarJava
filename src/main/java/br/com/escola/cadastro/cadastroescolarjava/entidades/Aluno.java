@@ -18,6 +18,16 @@ public class Aluno extends Pessoa {
         this.cpfDoResponsavel = cpfDoResponsavel;
     }
 
+    public Aluno(String nome, String telefone, String celular, String cpf,
+                 String dataNascimento, String matricula, int idTurma, String tipoSanguineo,
+                 String cpfDoResponsavel) {
+        super(nome, telefone, celular, cpf, dataNascimento);
+        this.matricula = matricula;
+        this.idTurma = idTurma;
+        this.tipoSanguineo = tipoSanguineo;
+        this.cpfDoResponsavel = cpfDoResponsavel;
+    }
+
     public String getMatricula() {
         return matricula;
     }

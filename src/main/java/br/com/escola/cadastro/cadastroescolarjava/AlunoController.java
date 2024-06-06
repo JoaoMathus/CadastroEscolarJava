@@ -27,6 +27,8 @@ public class AlunoController {
     @FXML
     private TextField txtCelular;
     @FXML
+    private TextField txtCpf;
+    @FXML
     private TextField txtCpfResponsavel;
     @FXML
     private DatePicker dataNascimento;
@@ -183,9 +185,11 @@ public class AlunoController {
         if (result.get() == ButtonType.OK){
             // TODO: Adicionar lógica para resgatar uma turma pelo número (que é o control da tela de cadastro).
             // TODO: e então resgatar a "série" pelo número e adicioná-lo ao objeto do aluno.
-            application.getAlunoDao().inserir(txtNome.getText(), dataNascimento.getValue().toString(),
-                    txtMatricula.getText(), txtTelefone.getText(), txtCelular.getText(), txtCpfResponsavel.getText(),
-                    escolhaTipoSanguineo.getValue(), "Segunda", 1);
+            var aluno = new Aluno(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
+                    txtCpf.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
+                    5, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
+
+            application.getAlunoDao().inserir(aluno);
         }
 
         limparTudo();
@@ -255,7 +259,6 @@ public class AlunoController {
         String mes;
         int horario;
         String horaCadastrado;
-        String posicaoDoAluno;
 
         if (LocalDate.now().getMonthValue() < 10)
             mes = "0" + LocalDate.now().getMonthValue();
@@ -269,13 +272,7 @@ public class AlunoController {
             horaCadastrado = Integer.toString(horario);
         }
 
-        if (Aluno.getNumeroCriados() > 9999)
-            posicaoDoAluno = "0000";
-        else
-            posicaoDoAluno = String.format("%04d", Aluno.getNumeroCriados());
-
-        txtMatricula.setText(ano + mes + horaCadastrado + posicaoDoAluno);
-        System.out.println(posicaoDoAluno);
+        txtMatricula.setText(ano + mes + horaCadastrado + txtCpf.getText().substring(8));
     }
 
     private void limparTudo() {

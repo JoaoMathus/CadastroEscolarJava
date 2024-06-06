@@ -19,6 +19,15 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
+    // Construtor sem o ID da entidade
+    public Pessoa(String nome, String telefone, String celular, String cpf, String dataNascimento) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+
     public int getId(){
         return id;
     }
