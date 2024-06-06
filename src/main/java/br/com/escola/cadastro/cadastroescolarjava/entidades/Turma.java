@@ -2,16 +2,16 @@ package br.com.escola.cadastro.cadastroescolarjava.entidades;
 
 public class Turma {
     private int id;
-    private String numero;
+    private String numeroDaSala;
     private String serie;
     private int capacidade;
     private int idProfessor;
 
     public Turma() {}
 
-    public Turma(int id, int capacidade, String serie, String numero, int idProfessor) {
+    public Turma(int id, int capacidade, String serie, String numeroDaSala, int idProfessor) {
         this.id = id;
-        this.numero = numero;
+        this.numeroDaSala = numeroDaSala;
         this.serie = serie;
         this.capacidade = capacidade;
         this.idProfessor = idProfessor;
@@ -21,12 +21,12 @@ public class Turma {
         return id;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNumeroDaSala() {
+        return numeroDaSala;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumeroDaSala(String numeroDaSala) {
+        this.numeroDaSala = numeroDaSala;
     }
 
     public String getSerie() {
@@ -57,7 +57,7 @@ public class Turma {
     public String toString() {
         return "Turma{" +
                 "id=" + id +
-                ", numero='" + numero + '\'' +
+                ", numeroDaSala='" + numeroDaSala + '\'' +
                 ", serie='" + serie + '\'' +
                 ", capacidade=" + capacidade +
                 ", idProfessor=" + idProfessor +
