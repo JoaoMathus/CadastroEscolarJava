@@ -22,169 +22,169 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane id="borderPane" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" snapToPixel="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.escola.cadastro.cadastroescolarjava.AlunoController">
-   <center>
-      <AnchorPane id="anchorPane" maxHeight="615.0" maxWidth="1280.0" minHeight="615.0" minWidth="300.0" prefHeight="615.0" prefWidth="1280.0" snapToPixel="false">
-         <children>
-            <GridPane layoutX="20.0" layoutY="76.0" prefHeight="373.0" prefWidth="593.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
-                  <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label id="lblMatricula" text="Matrícula:">
-                     <font>
+    <center>
+        <AnchorPane id="anchorPane" maxHeight="615.0" maxWidth="1280.0" minHeight="615.0" minWidth="300.0" prefHeight="615.0" prefWidth="1280.0" snapToPixel="false">
+            <children>
+                <GridPane layoutX="20.0" layoutY="76.0" prefHeight="373.0" prefWidth="593.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
+                        <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label id="lblMatricula" text="Matrícula:">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label id="lblNome" text="Nome:" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label id="lblTelefone" text="Telefone do Responsável:" GridPane.rowIndex="7">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label id="lblCelular" text="Celular do Responsável:" GridPane.rowIndex="8">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label id="lblData" text="Data de Nascimento:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField id="txtMatricula" fx:id="txtMatricula" editable="false" maxHeight="30.0" maxWidth="245.0" minHeight="30.0" minWidth="245.0" prefHeight="30.0" prefWidth="231.0" GridPane.columnIndex="1">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <effect>
+                                <ColorAdjust brightness="-0.12" />
+                            </effect>
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor>
+                        </TextField>
+                        <TextField id="txtNome" fx:id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField id="txtTelefone" fx:id="txtTelefone" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField id="txtCelular" fx:id="txtCelular" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="253.0" prefHeight="253.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <DatePicker id="dataNascimento" fx:id="dataNascimento" editable="false" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ChoiceBox id="escolhaSangue" fx:id="escolhaTipoSanguineo" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="A+" />
+                                    <String fx:value="A-" />
+                                    <String fx:value="B+" />
+                                    <String fx:value="B-" />
+                                    <String fx:value="AB+" />
+                                    <String fx:value="AB-" />
+                                    <String fx:value="O+" />
+                                    <String fx:value="O-" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                        <Label id="lblCpfCrianca" text="CPF da Criança:" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label id="lblCpfResponsavel" text="CPF do Responsável:" GridPane.rowIndex="6">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <TextField id="txtCpf" fx:id="txtCpfResponsavel1" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Label id="lblTurma" text="Turma:" GridPane.rowIndex="5">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox id="escolhaTurma" fx:id="escolhaTurma" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label id="lblSangue" text="Tipo Sanguíneo:" GridPane.rowIndex="4">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </GridPane>
+                <Button id="btnPesquisar" layoutX="350.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionarPorMatricula" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+                <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvarAluno" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+                <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletarAluno" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+                <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
+                    <font>
                         <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblNome" text="Nome:" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblTelefone" text="Telefone do Responsável:" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblCelular" text="Celular do Responsável:" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblData" text="Data de Nascimento:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblSangue" text="Tipo Sanguíneo:" GridPane.rowIndex="8">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblTurma" text="Turma:" GridPane.rowIndex="7">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField id="txtMatricula" fx:id="txtMatricula" editable="false" maxHeight="30.0" maxWidth="245.0" minHeight="30.0" minWidth="245.0" prefHeight="30.0" prefWidth="231.0" GridPane.columnIndex="1">
-                     <font>
+                    </font>
+                </Label>
+                <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
+                    <font>
                         <Font size="14.0" />
-                     </font>
-                     <effect>
-                        <ColorAdjust brightness="-0.12" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </TextField>
-                  <TextField id="txtNome" fx:id="txtNome" maxHeight="30.0" maxWidth="500.0" minHeight="30.0" minWidth="500.0" prefHeight="30.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField id="txtTelefone" fx:id="txtTelefone" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField id="txtCelular" fx:id="txtCelular" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="253.0" prefHeight="253.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <DatePicker id="dataNascimento" fx:id="dataNascimento" editable="false" maxHeight="30.0" maxWidth="110.0" minHeight="30.0" minWidth="110.0" prefHeight="30.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ChoiceBox id="escolhaTurma" fx:id="escolhaTurma" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ChoiceBox id="escolhaSangue" fx:id="escolhaTipoSanguineo" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" prefHeight="30.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                      <items>
-                          <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="A+" />
-                              <String fx:value="A-" />
-                              <String fx:value="B+" />
-                              <String fx:value="B-" />
-                              <String fx:value="AB+" />
-                              <String fx:value="AB-" />
-                              <String fx:value="O+" />
-                              <String fx:value="O-" />
-                          </FXCollections>
-                      </items>
-                  </ChoiceBox>
-                  <Label id="lblCpfCrianca" text="CPF da Criança:" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label id="lblCpfResponsavel" text="CPF do Responsável:" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <TextField id="txtCpfResponsavel" fx:id="txtCpfResponsavel" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField id="txtCpf" fx:id="txtCpfResponsavel1" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </GridPane>
-            <Button id="btnPesquisar" layoutX="350.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionarPorMatricula" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
-            <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvarAluno" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-            <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletarAluno" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
-            <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Label id="lblTitulo" layoutX="483.0" layoutY="15.0" maxHeight="53.0" maxWidth="314.0" minHeight="53.0" minWidth="314.0" prefHeight="53.0" prefWidth="314.0" text="Cadastro de Aluno">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-            <Button id="btnNovo" layoutX="50.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
-         </children>
-      </AnchorPane>
-   </center>
-   <top>
-      <MenuBar id="menuBar" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu id="menu" mnemonicParsing="false" text="Cadastros">
-            <items>
-                  <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
-                  <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
-                  <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
-                  <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
-                  <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <bottom>
-      <TableView id="tabelaAlunos" fx:id="tabelaAlunos" maxHeight="210.0" maxWidth="1200.0" minHeight="210.0" minWidth="1200.0" prefHeight="210.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn id="colunaMatricula" fx:id="colunaMatricula" maxWidth="1.7976931348623157E308" minWidth="239.0" prefWidth="239.0" text="Matrícula" />
-          <TableColumn id="colunaNome" fx:id="colunaNome" maxWidth="1.7976931348623157E308" minWidth="584.0" prefWidth="648.0" text="Nome" />
-            <TableColumn id="colunaTurma" fx:id="colunaTurma" maxWidth="1.7976931348623157E308" minWidth="201.0" prefWidth="392.0" text="Turma" />
-        </columns>
-      </TableView>
-   </bottom>
+                    </font>
+                </TextField>
+                <Label id="lblTitulo" layoutX="483.0" layoutY="15.0" maxHeight="53.0" maxWidth="314.0" minHeight="53.0" minWidth="314.0" prefHeight="53.0" prefWidth="314.0" text="Cadastro de Aluno">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Label>
+                <Button id="btnNovo" layoutX="50.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
+            </children>
+        </AnchorPane>
+    </center>
+    <top>
+        <MenuBar id="menuBar" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu id="menu" mnemonicParsing="false" text="Cadastros">
+                    <items>
+                        <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
+                        <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
+                        <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
+                        <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
+                        <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <bottom>
+        <TableView id="tabelaAlunos" fx:id="tabelaAlunos" maxHeight="210.0" maxWidth="1200.0" minHeight="210.0" minWidth="1200.0" prefHeight="210.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn id="colunaMatricula" fx:id="colunaMatricula" maxWidth="1.7976931348623157E308" minWidth="239.0" prefWidth="239.0" text="Matrícula" />
+                <TableColumn id="colunaNome" fx:id="colunaNome" maxWidth="1.7976931348623157E308" minWidth="584.0" prefWidth="648.0" text="Nome" />
+                <TableColumn id="colunaTurma" fx:id="colunaTurma" maxWidth="1.7976931348623157E308" minWidth="201.0" prefWidth="392.0" text="Turma" />
+            </columns>
+        </TableView>
+    </bottom>
 </BorderPane>
