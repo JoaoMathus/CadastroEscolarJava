@@ -38,7 +38,7 @@
                   <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ChoiceBox id="choProf" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" prefHeight="30.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ChoiceBox id="choProf" fx:id="escolhaProfessor" maxHeight="30.0" maxWidth="230.0" minHeight="30.0" minWidth="230.0" prefHeight="30.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label id="lblTurma" text="Turma:" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />

@@ -141,9 +141,9 @@
                         </Label>
                     </children>
                 </GridPane>
-                <Button id="btnPesquisar" layoutX="350.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionarPorMatricula" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
-                <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvarAluno" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-                <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletarAluno" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+                <Button id="btnPesquisar" layoutX="350.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+                <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+                <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletar" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
                 <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
                     <font>
                         <Font size="18.0" />

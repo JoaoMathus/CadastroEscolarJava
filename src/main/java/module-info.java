@@ -8,6 +8,6 @@ module br.com.escola.cadastro.cadastroescolarjava {
 
     opens br.com.escola.cadastro.cadastroescolarjava.entidades to javafx.base;
 
-    opens br.com.escola.cadastro.cadastroescolarjava to javafx.fxml;
     exports br.com.escola.cadastro.cadastroescolarjava;
+    opens br.com.escola.cadastro.cadastroescolarjava to javafx.base, javafx.fxml;
 }

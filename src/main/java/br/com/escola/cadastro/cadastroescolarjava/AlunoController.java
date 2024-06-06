@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class AlunoController {
+public class AlunoController implements BaseController, PessoaController {
     @FXML
     private TextField txtMatricula;
     @FXML
@@ -45,28 +45,32 @@ public class AlunoController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    private final int tamanhoMatricula = 12;
-
     private SistemaCadastro application;
-
     public void setApplication(SistemaCadastro application) {
         this.application = application;
         mostrarTodos();
     }
 
+    // Começo de tudo...
+    // Inicializando e configurando o controller.
     public void initialize() {
         aplicarValidacao(txtTelefone);
         aplicarValidacao(txtCelular);
         aplicarValidacao(txtCpfResponsavel);
+        configurarCelulasDaTabela();
+        configurarSelecaoDaTabela();
+        configurarCelulaDeData();
+    }
 
-        // Iniciando as colunas da tabela
+    @Override
+    public void configurarCelulasDaTabela() {
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+    }
 
-        // Quando clicar em uma linha da tabela,
-        // os dados serão printados nos campos
-        // para permitir atualização dos dados
+    @Override
+    public void configurarSelecaoDaTabela() {
         tabelaAlunos.getSelectionModel().selectedItemProperty().addListener((obs, selecaoAntiga, novaSelecao) -> {
             if (novaSelecao != null) {
                 txtNome.setText(novaSelecao.getNome());
@@ -76,9 +80,10 @@ public class AlunoController {
                 txtCpfResponsavel.setText(novaSelecao.getCpfDoResponsavel());
             }
         });
+    }
 
-        // Evitar coisas interessantemente impossíveis (o aluno ter nascido em um tempo
-        // no futuro). Pois é, sem viajantes do futuro no nosso sistema...
+    @Override
+    public void configurarCelulaDeData() {
         dataNascimento.setDayCellFactory(d -> new DateCell() {
             @Override
             public void updateItem(LocalDate item, boolean vazio) {
@@ -88,8 +93,8 @@ public class AlunoController {
         });
     }
 
-    // Aplica a validação do input dos campos numéricos
-    private void aplicarValidacao(TextField tf) {
+    @Override
+    public void aplicarValidacao(TextField tf) {
         tf.textProperty().addListener((observable, valorAntigo, valorNovo) -> {
             // Limitando a apenas valores numéricos
             if (!valorNovo.matches("\\d*")) {
@@ -103,9 +108,9 @@ public class AlunoController {
         });
     }
 
-
-@FXML
-    protected void irParaAluno() throws IOException {
+    @Override
+    @FXML
+    public void irParaAluno() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -115,8 +120,9 @@ public class AlunoController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaProfessor() throws IOException {
+    public void irParaProfessor() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -126,8 +132,9 @@ public class AlunoController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaTurma() throws IOException {
+    public void irParaTurma() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -137,8 +144,9 @@ public class AlunoController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaNotas() throws IOException {
+    public void irParaNotas() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -148,8 +156,9 @@ public class AlunoController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaHistorico() throws IOException {
+    public void irParaHistorico() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -159,8 +168,9 @@ public class AlunoController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void salvarAluno() throws IOException {
+    public void salvar() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
                 txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
                 txtCpfResponsavel.getText().isEmpty() || escolhaTipoSanguineo.getValue().isEmpty()) {
@@ -192,12 +202,13 @@ public class AlunoController {
             application.getAlunoDao().inserir(aluno);
         }
 
-        limparTudo();
+        limparCampos();
         mostrarTodos();
     }
 
+    @Override
     @FXML
-    protected void deletarAluno() {
+    public void deletar() {
         TextInputDialog dialogo = new TextInputDialog();
         dialogo.setTitle("Deletar um aluno");
         dialogo.setHeaderText("Digite a matrícula do aluno que você quer deletar");
@@ -233,12 +244,13 @@ public class AlunoController {
             }
         });
 
-        limparTudo();
+        limparCampos();
         mostrarTodos();
     }
 
+    @Override
     @FXML
-    protected void selecionarPorMatricula() {
+    public void selecionar() {
         if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
             mostrarTodos();
             return;
@@ -275,7 +287,8 @@ public class AlunoController {
         txtMatricula.setText(ano + mes + horaCadastrado + txtCpf.getText().substring(8));
     }
 
-    private void limparTudo() {
+    @Override
+    public void limparCampos() {
         txtMatricula.setText("");
         txtNome.setText("");
         txtTelefone.setText("");
@@ -286,7 +299,8 @@ public class AlunoController {
         escolhaTipoSanguineo.setValue("");
     }
 
-    private void mostrarTodos() {
+    @Override
+    public void mostrarTodos() {
         tabelaAlunos.setItems(FXCollections.observableArrayList(application.getAlunoDao().selecionarTodos()));
     }
 }

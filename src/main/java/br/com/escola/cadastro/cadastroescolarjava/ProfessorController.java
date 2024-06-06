@@ -5,30 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class ProfessorController {
-    @FXML
-    private MenuItem menuAluno;
-    @FXML
-    private MenuItem menuProfessor;
-    @FXML
-    private MenuItem menuTurma;
-    @FXML
-    private MenuItem menuNota;
+public class ProfessorController implements BaseController, PessoaController {
     @FXML
     private TextField txtNome;
     @FXML
@@ -52,13 +38,70 @@ public class ProfessorController {
 
 
     private SistemaCadastro application;
-
     public void setApplication(SistemaCadastro application) {
         this.application = application;
+        mostrarTodos();
     }
 
+    // Começo de tudo...
+    // Inicialização e configuração do controller.
+    public void initialize() {
+        aplicarValidacao(txtTelefone);
+        aplicarValidacao(txtCelular);
+        aplicarValidacao(txtCpf);
+        configurarCelulasDaTabela();
+        configurarSelecaoDaTabela();
+        configurarCelulaDeData();
+    }
+
+    @Override
+    public void configurarSelecaoDaTabela() {
+        tabelaProfessores.getSelectionModel().selectedItemProperty().addListener((obs, selecaoAntiga, novaSelecao) -> {
+            if (novaSelecao != null) {
+                txtNome.setText(novaSelecao.getNome());
+                txtCpf.setText(novaSelecao.getCpf());
+                txtTelefone.setText(novaSelecao.getTelefone());
+                txtCelular.setText(novaSelecao.getCelular());
+            }
+        });
+    }
+
+    @Override
+    public void configurarCelulaDeData() {
+        dataNascimento.setDayCellFactory(d -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean vazio) {
+                super.updateItem(item, vazio);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+    }
+
+    @Override
+    public void configurarCelulasDaTabela() {
+        colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
+    }
+
+    @Override
+    public void aplicarValidacao(TextField tf) {
+        tf.textProperty().addListener((observable, valorAntigo, valorNovo) -> {
+            // Limitando a apenas valores numéricos
+            if (!valorNovo.matches("\\d*")) {
+                tf.setText(valorNovo.replaceAll("[^\\d]", ""));
+            }
+
+            // Limitando ao número máximo de valores na entrada
+            if (tf.textProperty().getValue().length() > 11) {
+                tf.setText(valorAntigo);
+            }
+        });
+    }
+
+    @Override
     @FXML
-    protected void irParaAluno() throws IOException {
+    public void irParaAluno() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -68,8 +111,9 @@ public class ProfessorController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaProfessor() throws IOException {
+    public void irParaProfessor() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -78,8 +122,10 @@ public class ProfessorController {
 
         application.getPrimaryStage().getScene().setRoot(root);
     }
+
+    @Override
     @FXML
-    protected void irParaTurma() throws IOException {
+    public void irParaTurma() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -89,8 +135,9 @@ public class ProfessorController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaNotas() throws IOException {
+    public void irParaNotas() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -100,8 +147,9 @@ public class ProfessorController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void irParaHistorico() throws IOException {
+    public void irParaHistorico() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
         BorderPane root = fxmlLoader.load();
 
@@ -111,8 +159,9 @@ public class ProfessorController {
         application.getPrimaryStage().getScene().setRoot(root);
     }
 
+    @Override
     @FXML
-    protected void salvarProfessor() {
+    public void salvar() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
                 txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
                 txtCpf.getText().isEmpty()) {
@@ -132,16 +181,18 @@ public class ProfessorController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            application.getProfessorDao().inserir(txtNome.getText(), txtCpf.getText(),
-                    txtTelefone.getText(), txtCelular.getText(),
-                    dataNascimento.getValue().toString());
+            var p = new Professor(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
+                    txtCpf.getText(), dataNascimento.getValue().toString());
+            application.getProfessorDao().inserir(p);
         }
 
-        application.getProfessorDao().selecionarTodos().forEach(System.out::println);
+        limparCampos();
+        mostrarTodos();
     }
 
+    @Override
     @FXML
-    protected void deletarProfessor() {
+    public void deletar() {
         TextInputDialog dialogo = new TextInputDialog();
         dialogo.setTitle("Deletar um professor");
         dialogo.setHeaderText("Digite o cpf do professor que você quer deletar");
@@ -166,8 +217,9 @@ public class ProfessorController {
         });
     }
 
+    @Override
     @FXML
-    protected void selecionarPorCpf() {
+    public void selecionar() {
         colunaCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
@@ -187,4 +239,17 @@ public class ProfessorController {
         tabelaProfessores.setItems(listaObservavel);
     }
 
+    @Override
+    public void limparCampos() {
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtCelular.setText("");
+        txtCpf.setText("");
+        txtPesquisa.setText("");
+    }
+
+    @Override
+    public void mostrarTodos() {
+        tabelaProfessores.setItems(FXCollections.observableArrayList(application.getProfessorDao().selecionarTodos()));
+    }
 }

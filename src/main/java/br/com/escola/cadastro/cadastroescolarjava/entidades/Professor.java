@@ -6,6 +6,10 @@ public class Professor extends Pessoa {
         super (id, nome, telefone, celular, cpf, dataNascimento);
     }
 
+    public Professor(String nome, String telefone, String celular, String cpf, String dataNascimento) {
+        super(nome, telefone, celular, cpf, dataNascimento);
+    }
+
     @Override
     public String toString() {
         return "Professor{" +
