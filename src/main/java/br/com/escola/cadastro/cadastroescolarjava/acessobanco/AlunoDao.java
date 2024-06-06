@@ -8,38 +8,36 @@ import java.util.List;
 
 public class AlunoDao extends AbstratoDao <Aluno, Integer> {
     private final String scriptTabela = "CREATE TABLE IF NOT EXISTS aluno (\n" +
-            "    idaluno INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+            "    idAluno INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             "    nome TEXT,\n" +
-            "    datanascimento TEXT,\n" +
+            "    dataNascimento TEXT,\n" +
             "    matricula TEXT,\n" +
-            "    telefone TEXT,\n" +
-            "    celular TEXT,\n" +
-            "    cpfdoresponsavel TEXT,\n" +
-            "    tiposanguineo TEXT,\n" +
-            "    serie TEXT,\n" +
-            "    aprovado INTEGER,\n" +
-            "    fk_idturma INTEGER,\n" +
-            "    FOREIGN KEY (fk_idturma) REFERENCES turma(idturma)\n" +
+            "    telefoneDoResponsavel TEXT,\n" +
+            "    celularDoResponsavel TEXT,\n" +
+            "    cpfDoResponsavel TEXT,\n" +
+            "    cpf TEXT, \n" +
+            "    tipoSanguineo TEXT,\n" +
+            "    fk_idTurma INTEGER,\n" +
+            "    FOREIGN KEY (fk_idTurma) REFERENCES turma(idTurma)\n" +
             ")";
     private final String insertSql = "INSERT INTO aluno (" +
-            "nome, datanascimento, matricula, telefone, celular, cpfdoresponsavel, " +
-            "tiposanguineo, serie, aprovado, fk_idturma) VALUES (?, " +
+            "nome, dataNascimento, matricula, telefoneDoResponsavel, celularDoResponsavel," +
+            "cpfDoResponsavel, cpf, tipoSanguineo, fk_idTurma) VALUES (" +
             "?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM aluno WHERE " +
-            "idaluno = ?";
+            "idAluno = ?";
     private final String updateSql = "UPDATE aluno " +
             "SET nome = ?," +
-            "datanascimento = ?," +
+            "dataNascimento = ?," +
             "matricula = ?," +
-            "telefone = ?," +
-            "celular = ?," +
-            "cpfdoresponsavel = ?," +
-            "tiposanguineo = ?," +
-            "serie = ?," +
-            "aprovado = ?," +
-            "fk_idturma = ? " +
-            "WHERE idaluno = ?";
-    private final String selectSql = "SELECT * FROM aluno WHERE idaluno = ?";
+            "telefoneDoResponsavel = ?," +
+            "celularDoResponsavel = ?," +
+            "cpfDoResponsavel = ?," +
+            "cpf = ?," +
+            "tipoSanguineo = ?," +
+            "fk_idTurma = ? " +
+            "WHERE idAluno = ?";
+    private final String selectSql = "SELECT * FROM aluno WHERE idAluno = ?";
     private final String selectAllSql = "SELECT * FROM aluno";
 
 
@@ -56,29 +54,26 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
         }
     }
 
-    public void inserir(String nome, String dataNascimento, String matricula,
-                        String telefone, String celular, String cpfDoResponsavel,
-                        String tipoSanguineo, String serie, int idturma) {
+    @Override
+    public void inserir(Aluno a) {
         // Ver se o aluno já está inserido
         var alunos = selecionarTodos();
         for (var aluno : alunos) {
-            if (aluno.getMatricula().equals(matricula) && aluno.getIdTurma() == idturma &&
-                    aluno.getCpfDoResponsavel().equals(cpfDoResponsavel) && aluno.getNome().equals(nome) &&
-                    aluno.getSerie().equals(serie) && aluno.getTipoSanguineo().equals(tipoSanguineo) &&
-                    aluno.getDataNascimento().equals(dataNascimento))
+            if (aluno.getMatricula().equals(a.getMatricula()) && aluno.getCpf().equals(a.getCpf()) &&
+                    aluno.getNome().equals(a.getNome()) && aluno.getTipoSanguineo().equals(a.getTipoSanguineo()) &&
+                    aluno.getDataNascimento().equals(a.getDataNascimento()))
                 return;
         }
         try (var stmt = conectar().prepareStatement(insertSql)) {
-            stmt.setString(1, nome);
-            stmt.setString(2, dataNascimento);
-            stmt.setString(3, matricula);
-            stmt.setString(4, telefone);
-            stmt.setString(5, celular);
-            stmt.setString(6, cpfDoResponsavel);
-            stmt.setString(7, tipoSanguineo);
-            stmt.setString(8, serie);
-            stmt.setBoolean(9, false);
-            stmt.setInt(10, idturma);
+            stmt.setString(1, a.getNome());
+            stmt.setString(2, a.getDataNascimento());
+            stmt.setString(3, a.getMatricula());
+            stmt.setString(4, a.getTelefone());
+            stmt.setString(5, a.getCelular());
+            stmt.setString(6, a.getCpfDoResponsavel());
+            stmt.setString(7, a.getCpf());
+            stmt.setString(8, a.getTipoSanguineo());
+            stmt.setInt(9, a.getIdTurma());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -105,12 +100,10 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
             stmt.setString(4, a.getTelefone());
             stmt.setString(5, a.getCelular());
             stmt.setString(6, a.getCpfDoResponsavel());
-            stmt.setString(7, a.getTipoSanguineo());
+            stmt.setString(7, a.getCpf());
             stmt.setString(8, a.getTipoSanguineo());
-            stmt.setString(9, a.getSerie());
-            stmt.setBoolean(10, a.isAprovado());
-            stmt.setInt(11, a.getIdTurma());
-            stmt.setInt(12, a.getId());
+            stmt.setInt(9, a.getIdTurma());
+            stmt.setInt(10, a.getId());
         } catch (SQLException ex) {
             System.err.println("Erro atualizando o aluno: " + ex.getMessage());
         }
@@ -123,12 +116,11 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
-                a = new Aluno(r.getInt("idaluno"), r.getString("nome"),
-                        r.getString("datanascimento"), r.getString("matricula"),
-                        r.getString("telefone"), r.getString("celular"),
-                        r.getString("cpfdoresponsavel"), r.getString("tiposanguineo"),
-                        r.getString("serie"), r.getBoolean("aprovado"),
-                        r.getInt("fk_idturma"));
+                a = new Aluno(r.getInt("idAluno"), r.getString("nome"),
+                        r.getString("dataNascimento"), r.getString("matricula"),
+                        r.getString("telefoneDoResponsavel"), r.getString("celularDoResponsavel"),
+                        r.getString("cpfDoResponsavel"), r.getString("cpf"),
+                        r.getString("tipoSanguineo"), r.getInt("fk_idTurma"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar aluno: " + ex.getMessage());
@@ -145,12 +137,11 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
             var r = stmt.executeQuery(selectAllSql);
 
             while (r.next()) {
-                lista.add(new Aluno(r.getInt("idaluno"), r.getString("nome"),
-                        r.getString("datanascimento"), r.getString("matricula"),
-                        r.getString("telefone"), r.getString("celular"),
-                        r.getString("cpfdoresponsavel"), r.getString("tiposanguineo"),
-                        r.getString("serie"), r.getBoolean("aprovado"),
-                        r.getInt("fk_idturma")));
+                lista.add(new Aluno(r.getInt("idAluno"), r.getString("nome"),
+                        r.getString("dataNascimento"), r.getString("matricula"),
+                        r.getString("telefoneDoResponsavel"), r.getString("celularDoResponsavel"),
+                        r.getString("cpfDoResponsavel"), r.getString("cpf"),
+                        r.getString("tipoSanguineo"), r.getInt("fk_idTurma")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro em selecionar todos os alunos: " + ex.getMessage());

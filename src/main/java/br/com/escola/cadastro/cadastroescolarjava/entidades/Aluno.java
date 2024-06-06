@@ -2,29 +2,20 @@ package br.com.escola.cadastro.cadastroescolarjava.entidades;
 
 public class Aluno extends Pessoa {
     private String matricula;
-    private String serie;
     private int idTurma;
     private String tipoSanguineo;
     private String cpfDoResponsavel;
-    private boolean aprovado;
-
-    private static long numeroCriados = 0;
 
     public Aluno() {}
 
-    public Aluno(int id, String nome, String dataNascimento,
-                 String matricula, String telefone, String celular,
-                 String cpfDoResponsavel, String tipoSanguineo, String serie,
-                 boolean aprovado, int idTurma) {
-        super(id, nome, telefone, celular, dataNascimento);
+    public Aluno(int id, String nome, String dataNascimento, String matricula,
+                 String telefoneDoResponsavel, String celularDoResponsavel,
+                 String cpf, String cpfDoResponsavel, String tipoSanguineo, int idTurma) {
+        super(id, nome, telefoneDoResponsavel, celularDoResponsavel, cpf, dataNascimento);
         this.matricula = matricula;
-        this.serie = serie;
         this.idTurma = idTurma;
         this.tipoSanguineo = tipoSanguineo;
         this.cpfDoResponsavel = cpfDoResponsavel;
-        this.aprovado = aprovado;
-
-        numeroCriados++;
     }
 
     public String getMatricula() {
@@ -33,14 +24,6 @@ public class Aluno extends Pessoa {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
-    }
-
-    public String getSerie() {
-        return serie;
-    }
-
-    public void setSerie(String serie) {
-        this.serie = serie;
     }
 
     public int getIdTurma() {
@@ -67,32 +50,19 @@ public class Aluno extends Pessoa {
         this.cpfDoResponsavel = cpfDoResponsavel;
     }
 
-    public boolean isAprovado() {
-        return aprovado;
-    }
-
-    public void setAprovado(boolean aprovado) {
-        this.aprovado = aprovado;
-    }
-
-    public static long getNumeroCriados() {
-        return numeroCriados;
-    }
-
     @Override
     public String toString() {
         return "Aluno{" +
                 "id='" + getId() + '\'' +
                 ", nome='" + getNome() + '\'' +
                 ", dataNascimento='" + getDataNascimento() + '\'' +
-                ", telefone='" + getTelefone() + '\'' +
-                ", celular='" + getCelular() + '\'' +
+                ", cpf='" + getCpf() + '\'' +
+                ", telefoneDoResponsavel='" + getTelefone() + '\'' +
+                ", celularDoResponsavel='" + getCelular() + '\'' +
                 ", matricula='" + matricula + '\'' +
-                ", serie='" + serie + '\'' +
                 ", idTurma=" + idTurma +
                 ", tipoSanguineo='" + tipoSanguineo + '\'' +
                 ", cpfDoResponsavel='" + cpfDoResponsavel + '\'' +
-                ", aprovado=" + aprovado +
                 '}';
     }
 }
