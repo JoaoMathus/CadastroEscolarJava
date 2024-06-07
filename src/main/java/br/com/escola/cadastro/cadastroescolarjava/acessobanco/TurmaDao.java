@@ -91,7 +91,7 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             var r = stmt.executeQuery();
             while (r.next()) {
                 t = new Turma(r.getInt("idTurma"), r.getInt("capacidade"),
-                        r.getString("serie"), r.getString("numeroDaSala"),
+                        r.getString("numeroDaSala"), r.getString("serie"),
                         r.getInt("fk_idProfessor"));
             }
         } catch (SQLException ex) {
@@ -109,7 +109,7 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
 
             while (r.next()) {
                 lista.add(new Turma(r.getInt("idTurma"), r.getInt("capacidade"),
-                        r.getString("serie"), r.getString("numeroDaSala"),
+                        r.getString("numeroDaSala"), r.getString("serie"),
                         r.getInt("fk_idProfessor")));
             }
         } catch (SQLException ex) {

@@ -49,12 +49,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label id="lblAno" text="Ano:">
+                  <Label id="lblSerie" text="Serie:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Spinner id="spiAno" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <Spinner id="spinnerSerie" fx:id="spinnerSerie" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" max="5" min="1" />
                   <TextField id="txtTurma" fx:id="txtTurma" editable="false" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
@@ -65,8 +65,8 @@
                   </TextField>
                </children>
             </GridPane>
-            <Button id="btnSalvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-            <Button id="btnDel" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+            <Button id="btnSalvar" onAction="#salvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
+            <Button id="btnDel" onAction="#deletar" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
          </children>
       </AnchorPane>
    </center>
@@ -86,10 +86,10 @@
       </MenuBar>
    </top>
    <bottom>
-      <TableView id="tabela" maxWidth="1200.0" minWidth="1200.0" prefHeight="345.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+      <TableView id="tabela" fx:id="tabelaDeTurmas" maxWidth="1200.0" minWidth="1200.0" prefHeight="345.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn id="colTurma" prefWidth="330.0" text="Turma" />
-            <TableColumn id="colNomeProf" prefWidth="732.0" text="Nome do Professor" />
+            <TableColumn id="colTurma" fx:id="colunaTurma" prefWidth="330.0" text="Turma" />
+            <TableColumn id="colNomeProf" fx:id="colunaProfessor" prefWidth="732.0" text="Nome do Professor" />
          </columns>
       </TableView>
    </bottom>
