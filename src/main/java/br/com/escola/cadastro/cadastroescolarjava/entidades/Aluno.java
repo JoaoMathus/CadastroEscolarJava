@@ -5,6 +5,7 @@ public class Aluno extends Pessoa {
     private int idTurma;
     private String tipoSanguineo;
     private String cpfDoResponsavel;
+    private String numeroTurma;
 
     public Aluno() {}
 
@@ -19,13 +20,14 @@ public class Aluno extends Pessoa {
     }
 
     public Aluno(String nome, String telefone, String celular, String cpf,
-                 String dataNascimento, String matricula, int idTurma, String tipoSanguineo,
-                 String cpfDoResponsavel) {
+                 String dataNascimento, String matricula, int idTurma, String numeroTurma,
+                 String tipoSanguineo, String cpfDoResponsavel) {
         super(nome, telefone, celular, cpf, dataNascimento);
         this.matricula = matricula;
         this.idTurma = idTurma;
         this.tipoSanguineo = tipoSanguineo;
         this.cpfDoResponsavel = cpfDoResponsavel;
+        this.numeroTurma = numeroTurma;
     }
 
     public String getMatricula() {
@@ -42,6 +44,14 @@ public class Aluno extends Pessoa {
 
     public void setIdTurma(int idTurma) {
         this.idTurma = idTurma;
+    }
+
+    public String getNumeroTurma() {
+        return numeroTurma;
+    }
+
+    public void setNumeroTurma(String numeroTurma) {
+        this.numeroTurma = numeroTurma;
     }
 
     public String getTipoSanguineo() {

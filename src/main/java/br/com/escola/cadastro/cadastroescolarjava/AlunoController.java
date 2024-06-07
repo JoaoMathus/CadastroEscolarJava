@@ -2,11 +2,21 @@ package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Pessoa;
+import br.com.escola.cadastro.cadastroescolarjava.entidades.Professor;
+import br.com.escola.cadastro.cadastroescolarjava.entidades.Turma;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
@@ -14,6 +24,8 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +38,8 @@ public class AlunoController implements BaseController, PessoaController {
     private TextField txtTelefone;
     @FXML
     private TextField txtCelular;
+    @FXML
+    private ChoiceBox<String> escolhaTurma;
     @FXML
     private TextField txtCpf;
     @FXML
@@ -49,6 +63,9 @@ public class AlunoController implements BaseController, PessoaController {
     public void setApplication(SistemaCadastro application) {
         this.application = application;
         mostrarTodos();
+        var numeroTurmas = application.getTurmaDao().selecionarTodos()
+                .stream().map(Turma::getNumeroDaSala).toList();
+        escolhaTurma.setItems(FXCollections.observableArrayList(numeroTurmas));
     }
 
     // Começo de tudo...
@@ -57,6 +74,7 @@ public class AlunoController implements BaseController, PessoaController {
         aplicarValidacao(txtTelefone);
         aplicarValidacao(txtCelular);
         aplicarValidacao(txtCpfResponsavel);
+        aplicarValidacao(txtCpf);
         configurarCelulasDaTabela();
         configurarSelecaoDaTabela();
         configurarCelulaDeData();
@@ -66,7 +84,7 @@ public class AlunoController implements BaseController, PessoaController {
     public void configurarCelulasDaTabela() {
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("serie"));
+        colunaTurma.setCellValueFactory(new PropertyValueFactory<>("numeroTurma"));
     }
 
     @Override
@@ -78,6 +96,13 @@ public class AlunoController implements BaseController, PessoaController {
                 txtTelefone.setText(novaSelecao.getTelefone());
                 txtCelular.setText(novaSelecao.getCelular());
                 txtCpfResponsavel.setText(novaSelecao.getCpfDoResponsavel());
+                var turmas = application.getTurmaDao().selecionarTodos();
+                var turmaFiltrada = turmas.stream().filter(t -> t.getId() == novaSelecao.getIdTurma()).toList().getFirst();
+                escolhaTurma.setValue(turmaFiltrada.getNumeroDaSala());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                dataNascimento.setValue(LocalDate.parse(novaSelecao.getDataNascimento(), dtf));
+                escolhaTipoSanguineo.setValue(novaSelecao.getTipoSanguineo());
+                txtCpf.setText(novaSelecao.getCpf());
             }
         });
     }
@@ -183,6 +208,32 @@ public class AlunoController implements BaseController, PessoaController {
             return;
         }
 
+        var alunos = application.getAlunoDao().selecionarTodos();
+        for (var aluno : alunos) {
+            if (aluno.getCpf().equals(txtCpf.getText())) {
+                // Atualização de dados.
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmação");
+                alert.setHeaderText("Atualização de dados");
+                alert.setContentText("Deseja mesmo atualizar esses dados?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    var turma = application.getTurmaDao().selecionarTodos()
+                            .stream().filter(t -> t.getNumeroDaSala().equals(escolhaTurma.getValue())).toList()
+                            .getFirst();
+                    var alunoAtualizado = new Aluno(aluno.getId(), txtNome.getText(),
+                            dataNascimento.getValue().toString(), txtMatricula.getText(),
+                            txtTelefone.getText(), txtCelular.getText(), txtCpf.getText(),
+                            txtCpfResponsavel.getText(), escolhaTipoSanguineo.getValue(),
+                            turma.getId());
+                    application.getAlunoDao().alterar(alunoAtualizado);
+                    mostrarTodos();
+                }
+                return;
+            }
+        }
+
         // Aplica o algoritmo para gerar a matrícula
         calcularMatricula();
 
@@ -193,11 +244,18 @@ public class AlunoController implements BaseController, PessoaController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // TODO: Adicionar lógica para resgatar uma turma pelo número (que é o control da tela de cadastro).
-            // TODO: e então resgatar a "série" pelo número e adicioná-lo ao objeto do aluno.
+            var turmas = application.getTurmaDao().selecionarTodos();
+            int idTurma = -1;
+            String numeroTurma = "";
+            for (var turma : turmas) {
+                if (turma.getNumeroDaSala().equals(escolhaTurma.getValue())) {
+                    idTurma = turma.getId();
+                    numeroTurma = turma.getNumeroDaSala();
+                }
+            }
             var aluno = new Aluno(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
                     txtCpf.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
-                    5, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
+                    idTurma, numeroTurma, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
 
             application.getAlunoDao().inserir(aluno);
         }
@@ -301,6 +359,17 @@ public class AlunoController implements BaseController, PessoaController {
 
     @Override
     public void mostrarTodos() {
-        tabelaAlunos.setItems(FXCollections.observableArrayList(application.getAlunoDao().selecionarTodos()));
+        List<Aluno> listaFinal = new ArrayList<>();
+        var alunos = application.getAlunoDao().selecionarTodos();
+        var turmas = application.getTurmaDao().selecionarTodos();
+        for (var aluno : alunos) {
+            for (var turma : turmas) {
+                if (aluno.getIdTurma() == turma.getId()) {
+                    aluno.setNumeroTurma(turma.getNumeroDaSala());
+                    listaFinal.add(aluno);
+                }
+            }
+        }
+        tabelaAlunos.setItems(FXCollections.observableArrayList(listaFinal));
     }
 }
