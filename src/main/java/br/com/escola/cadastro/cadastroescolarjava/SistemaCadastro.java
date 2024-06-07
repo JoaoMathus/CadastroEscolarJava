@@ -1,8 +1,6 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
-import br.com.escola.cadastro.cadastroescolarjava.acessobanco.AlunoDao;
-import br.com.escola.cadastro.cadastroescolarjava.acessobanco.ProfessorDao;
-import br.com.escola.cadastro.cadastroescolarjava.acessobanco.TurmaDao;
+import br.com.escola.cadastro.cadastroescolarjava.acessobanco.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +13,8 @@ public class SistemaCadastro extends Application {
     private ProfessorDao professorDao;
     private TurmaDao turmaDao;
     private AlunoDao alunoDao;
+    private DisciplinaDao disciplinaDao;
+    private BimestreDao bimestreDao;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -49,6 +49,14 @@ public class SistemaCadastro extends Application {
 
     public AlunoDao getAlunoDao() {
         return alunoDao;
+    }
+
+    public DisciplinaDao getDisciplinaDao() {
+        return disciplinaDao;
+    }
+
+    public BimestreDao getBimestreDao() {
+        return bimestreDao;
     }
 
     public static void main(String[] args) {

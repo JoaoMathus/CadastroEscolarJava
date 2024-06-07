@@ -1,6 +1,8 @@
 package br.com.escola.cadastro.cadastroescolarjava.entidades;
 
 public class Professor extends Pessoa {
+    public Professor() {}
+
     public Professor(int id, String nome, String telefone, String celular, String dataNascimento,
                      String cpf) {
         super (id, nome, telefone, celular, cpf, dataNascimento);
@@ -13,7 +15,8 @@ public class Professor extends Pessoa {
     @Override
     public String toString() {
         return "Professor{" +
-                "nome='" +getNome() + '\'' +
+                "id='" + getId() + '\'' +
+                ", nome='" +getNome() + '\'' +
                 ", telefone='" + getTelefone() + '\'' +
                 ", celular='" + getCelular() + '\'' +
                 ", dataNascimento='" + getDataNascimento() + '\'' +

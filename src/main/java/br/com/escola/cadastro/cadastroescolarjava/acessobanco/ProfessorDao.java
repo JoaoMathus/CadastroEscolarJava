@@ -87,14 +87,17 @@ public class ProfessorDao extends AbstratoDao <Professor, Integer> {
 
     @Override
     public Professor selecionar(Integer id) {
-        Professor p = null;
+        Professor p = new Professor();
 
         try (var stmt = conectar().prepareStatement(selectSql)) {
             var r = stmt.executeQuery();
             while (r.next()) {
-                p = new Professor(r.getInt("idProfessor"), r.getString("nome"),
-                        r.getString("telefone"), r.getString("celular"),
-                        r.getString("dataNascimento"), r.getString("cpf"));
+                p.setId(r.getInt("idProfessor"));
+                p.setNome(r.getString("nome"));
+                p.setTelefone(r.getString("telefone"));
+                p.setCelular(r.getString("celular"));
+                p.setDataNascimento(r.getString("dataNascimento"));
+                p.setCpf(r.getString("cpf"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar professor: " + ex.getMessage());
