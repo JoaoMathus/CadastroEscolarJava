@@ -8,9 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.util.converter.FormatStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 
 import java.io.IOException;
+import java.text.Format;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +66,8 @@ public class ProfessorController implements BaseController, PessoaController {
                 txtCpf.setText(novaSelecao.getCpf());
                 txtTelefone.setText(novaSelecao.getTelefone());
                 txtCelular.setText(novaSelecao.getCelular());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                dataNascimento.setValue(LocalDate.parse(novaSelecao.getDataNascimento(), dtf));
             }
         });
     }
@@ -172,6 +178,27 @@ public class ProfessorController implements BaseController, PessoaController {
 
             alert.showAndWait();
             return;
+        }
+
+        var professores = application.getProfessorDao().selecionarTodos();
+        for (var professor : professores) {
+            if (txtCpf.getText().equals(professor.getCpf())) {
+                // Atualização de dados.
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmação");
+                alert.setHeaderText("Atualização de dados");
+                alert.setContentText("Deseja mesmo atualizar esses dados?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    var professorAtualizado = new Professor(professor.getId(), txtNome.getText(),
+                            txtTelefone.getText(), txtCelular.getText(), dataNascimento.getValue().toString(),
+                            txtCpf.getText());
+                    application.getProfessorDao().alterar(professorAtualizado);
+                    mostrarTodos();
+                }
+                return;
+            }
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
