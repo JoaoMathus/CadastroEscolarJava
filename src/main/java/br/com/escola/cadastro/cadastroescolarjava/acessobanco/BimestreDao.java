@@ -14,7 +14,7 @@ public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
             "prova REAL," +
             "pontoDeParticipacao REAL," +
             "fk_idDisciplina INTEGER," +
-            "FOREIGN KEY (fk_idDisciplina) REFERENCES disciplina(idDisciplina)" +
+            "FOREIGN KEY (fk_idDisciplina) REFERENCES disciplina(idDisciplina) ON DELETE CASCADE" +
             ")";
     protected String insertSql = "INSERT INTO bimestre (teste, prova, pontoDeParticipacao," +
             "fk_idDisciplina) VALUES (?, ?, ?, ?)";

@@ -28,6 +28,8 @@ public class SistemaCadastro extends Application {
         professorDao = new ProfessorDao();
         turmaDao = new TurmaDao();
         alunoDao = new AlunoDao();
+        disciplinaDao = new DisciplinaDao();
+        bimestreDao = new BimestreDao();
 
         AlunoController alunoController = fxmlLoader.getController();
         alunoController.setApplication(this);

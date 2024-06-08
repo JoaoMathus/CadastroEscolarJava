@@ -13,7 +13,7 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             "    serie TEXT,\n" +
             "    numeroDaSala TEXT,\n" +
             "    fk_idProfessor INTEGER,\n" +
-            "    FOREIGN KEY (fk_idProfessor) REFERENCES professor(idProfessor)\n" +
+            "    FOREIGN KEY (fk_idProfessor) REFERENCES professor(idProfessor) ON DELETE CASCADE\n" +
             ")";
     private final String insertSql = "INSERT INTO turma (" +
             "capacidade, serie, numeroDaSala, fk_idProfessor) VALUES (" +

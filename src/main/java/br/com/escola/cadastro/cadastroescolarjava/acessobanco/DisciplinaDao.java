@@ -13,7 +13,7 @@ public class DisciplinaDao extends AbstratoDao <Disciplina, Integer> {
             "    anoLetivo TEXT,\n" +
             "    aprovado INTEGER,\n" +
             "    fk_idAluno INTEGER,\n" +
-            "    FOREIGN KEY(fk_idAluno) REFERENCES aluno(idAluno)\n" +
+            "    FOREIGN KEY(fk_idAluno) REFERENCES aluno(idAluno) ON DELETE CASCADE\n" +
             ")";
     private final String insertSql = "INSERT INTO disciplina (" +
             "nome, anoLetivo, aprovado, fk_idAluno) VALUES (" +
