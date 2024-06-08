@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="borderPane" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" snapToPixel="false" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.escola.cadastro.cadastroescolarjava.BemvindoController">
+   <center>
+      <AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane layoutX="119.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="641.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button id="btnCadAluno" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" prefWidth="300.0" text="Cadastrar Aluno" textAlignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnCadProf" mnemonicParsing="false" prefWidth="300.0" text="Cadastrar Professor" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnCadTurma" mnemonicParsing="false" prefWidth="300.0" text="Criar Turma" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnCadNota" mnemonicParsing="false" prefWidth="300.0" text="Cadastro de Notas" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnHistorico" mnemonicParsing="false" prefWidth="300.0" text="Histórico" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+                  <Label id="lblBemVindo" style="-fx-text-fill: linear-gradient(to right, #FFD700, #FFA07A, #00CED1);;" text="Bem-Vindo">
+                     <font>
+                        <Font name="Century751 SeBd BT Semi Bold" size="72.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
+      </AnchorPane>
+   </center>
+   <left>
+       <StackPane fx:id="stackPane" accessibleRole="IMAGE_VIEW" layoutY="50.0" maxHeight="800.0" maxWidth="524.0" minHeight="800.0" minWidth="524.0" prefHeight="800.0" prefWidth="524.0" BorderPane.alignment="CENTER">
+           <ImageView id="imageView" fx:id="imageView" fitHeight="700.0" fitWidth="500.0">
+            <StackPane.margin>
+               <Insets bottom="13.0" />
+            </StackPane.margin>
+            <viewport>
+               <Rectangle2D />
+            </viewport>
+            <image>
+               <Image url="@image1.png" />
+            </image></ImageView>
+       </StackPane>
+   </left>
+</BorderPane>
