@@ -1,9 +1,6 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Aluno;
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Pessoa;
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Professor;
-import br.com.escola.cadastro.cadastroescolarjava.entidades.Turma;
+import br.com.escola.cadastro.cadastroescolarjava.entidades.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -257,6 +254,7 @@ public class AlunoController implements BaseController, PessoaController {
                     txtCpf.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
                     idTurma, numeroTurma, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
 
+            // Adicionando o aluno
             application.getAlunoDao().inserir(aluno);
         }
 
@@ -355,6 +353,8 @@ public class AlunoController implements BaseController, PessoaController {
         txtCpfResponsavel.setText("");
         dataNascimento.setValue(null);
         escolhaTipoSanguineo.setValue("");
+        txtCpf.setText("");
+        escolhaTurma.setValue(null);
     }
 
     @Override

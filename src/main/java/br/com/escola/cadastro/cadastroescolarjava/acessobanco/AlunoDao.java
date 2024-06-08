@@ -18,7 +18,7 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
             "    cpf TEXT, \n" +
             "    tipoSanguineo TEXT,\n" +
             "    fk_idTurma INTEGER,\n" +
-            "    FOREIGN KEY (fk_idTurma) REFERENCES turma(idTurma)\n" +
+            "    FOREIGN KEY (fk_idTurma) REFERENCES turma(idTurma) ON DELETE CASCADE\n" +
             ")";
     private final String insertSql = "INSERT INTO aluno (" +
             "nome, dataNascimento, matricula, telefoneDoResponsavel, celularDoResponsavel," +
