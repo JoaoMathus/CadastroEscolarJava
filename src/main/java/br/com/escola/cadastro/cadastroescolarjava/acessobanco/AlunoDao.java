@@ -151,4 +151,25 @@ public class AlunoDao extends AbstratoDao <Aluno, Integer> {
 
         return lista;
     }
+
+    public Aluno selecionarPorMatricula(String matricula) {
+        Aluno a = null;
+
+        try (var stmt = conectar().prepareStatement("SELECT * FROM aluno WHERE matricula = ?")) {
+            stmt.setString(1, matricula);
+            var r = stmt.executeQuery();
+
+            while (r.next()) {
+                a = new Aluno(r.getInt("idAluno"), r.getString("nome"),
+                        r.getString("dataNascimento"), r.getString("matricula"),
+                        r.getString("telefoneDoResponsavel"), r.getString("celularDoResponsavel"),
+                        r.getString("cpfDoResponsavel"), r.getString("cpf"),
+                        r.getString("tipoSanguineo"), r.getInt("fk_idTurma"));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro ao resgatar aluno por matrícula: " + ex.getMessage());
+        }
+
+        return a;
+    }
 }

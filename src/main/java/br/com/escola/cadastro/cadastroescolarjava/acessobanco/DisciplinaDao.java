@@ -49,7 +49,7 @@ public class DisciplinaDao extends AbstratoDao <Disciplina, Integer> {
             stmt.setString(1, d.getNome());
             stmt.setString(2, d.getAnoLetivo());
             stmt.setBoolean(3, d.isAprovado());
-            stmt.setInt(4, d.getId());
+            stmt.setInt(4, d.getIdAluno());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -114,6 +114,25 @@ public class DisciplinaDao extends AbstratoDao <Disciplina, Integer> {
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as disciplinas: " + ex.getMessage());
         }
+        return lista;
+    }
+
+    public List<Disciplina> selecionarTodasPorIdAluno(Integer idAluno) {
+        List<Disciplina> lista = new ArrayList<>();
+
+        try (var stmt = conectar().prepareStatement("SELECT * FROM disciplina WHERE fk_idAluno = ?")) {
+            stmt.setInt(1, idAluno);
+            var r = stmt.executeQuery();
+
+            while (r.next()) {
+                lista.add(new Disciplina(r.getInt("idDisciplina"),
+                        r.getString("nome"), r.getString("anoLetivo"),
+                        r.getBoolean("aprovado"), idAluno));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro ao selecionar as disciplinas de um aluno: " + ex.getMessage());
+        }
+
         return lista;
     }
 }

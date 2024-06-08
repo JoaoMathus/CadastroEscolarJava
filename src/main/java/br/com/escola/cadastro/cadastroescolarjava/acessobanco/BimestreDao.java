@@ -10,17 +10,19 @@ import java.util.List;
 public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
     protected String scriptTabela = "CREATE TABLE IF NOT EXISTS bimestre (" +
             "idBimestre INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "numeroBimestre INTEGER," +
             "teste REAL," +
             "prova REAL," +
             "pontoDeParticipacao REAL," +
             "fk_idDisciplina INTEGER," +
             "FOREIGN KEY (fk_idDisciplina) REFERENCES disciplina(idDisciplina) ON DELETE CASCADE" +
             ")";
-    protected String insertSql = "INSERT INTO bimestre (teste, prova, pontoDeParticipacao," +
-            "fk_idDisciplina) VALUES (?, ?, ?, ?)";
+    protected String insertSql = "INSERT INTO bimestre (numeroBimestre, teste, prova, pontoDeParticipacao," +
+            "fk_idDisciplina) VALUES (?, ?, ?, ?, ?)";
     protected String deleteSql = "DELETE FROM bimestre WHERE idBimestre = ?";
-    protected String updateSql = "UPDATE bimestre" +
-            "SET teste = ?," +
+    protected String updateSql = "UPDATE bimestre " +
+            "SET numeroBimestre = ?," +
+            "teste = ?," +
             "prova = ?," +
             "pontoDeParticipacao = ?," +
             "fk_idDisciplina = ? " +
@@ -44,10 +46,11 @@ public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
     @Override
     public void inserir(Bimestre b) {
         try (var stmt = conectar().prepareStatement(insertSql)) {
-            stmt.setFloat(1, b.getTeste());
-            stmt.setFloat(2, b.getProva());
-            stmt.setFloat(3, b.getPontoDeParticipacao());
-            stmt.setInt(4, b.getIdDisciplina());
+            stmt.setInt(1, b.getNumeroBimestre());
+            stmt.setDouble(2, b.getTeste());
+            stmt.setDouble(3, b.getProva());
+            stmt.setDouble(4, b.getPontoDeParticipacao());
+            stmt.setInt(5, b.getIdDisciplina());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -68,15 +71,16 @@ public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
     @Override
     public void alterar(Bimestre b) {
         try (var stmt = conectar().prepareStatement(updateSql)) {
-            stmt.setFloat(1, b.getTeste());
-            stmt.setFloat(2, b.getProva());
-            stmt.setFloat(3, b.getPontoDeParticipacao());
-            stmt.setInt(4, b.getIdDisciplina());
-            stmt.setInt(5, b.getId());
+            stmt.setInt(1, b.getNumeroBimestre());
+            stmt.setDouble(2, b.getTeste());
+            stmt.setDouble(3, b.getProva());
+            stmt.setDouble(4, b.getPontoDeParticipacao());
+            stmt.setInt(5, b.getIdDisciplina());
+            stmt.setInt(6, b.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.err.println("Erro atualizando o aluno: " + ex.getMessage());
+            System.err.println("Erro atualizando o bimestre: " + ex.getMessage());
         }
     }
 
@@ -87,9 +91,9 @@ public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
             stmt.setInt(1, id);
             var r = stmt.executeQuery();
             while (r.next()) {
-                b = new Bimestre(r.getInt("idBimestre"), r.getFloat("teste"),
-                        r.getFloat("prova"), r.getFloat("pontoDeParticipacao"),
-                        r.getInt("fk_idDisciplina"));
+                b = new Bimestre(r.getInt("idBimestre"), r.getInt("numeroBimestre"),
+                        r.getDouble("teste"), r.getDouble("prova"),
+                        r.getDouble("pontoDeParticipacao"), r.getInt("fk_idDisciplina"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar bimestre: " + ex.getMessage());
@@ -107,13 +111,34 @@ public class BimestreDao extends AbstratoDao <Bimestre, Integer> {
 
             while (r.next()) {
                 listaBimestres.add(new Bimestre(r.getInt("idBimestre"),
-                        r.getFloat("teste"), r.getFloat("prova"),
-                        r.getFloat("pontoDeParticipacao"), r.getInt("fk_idDisciplina")));
+                        r.getInt("numeroBimestre"), r.getDouble("teste"),
+                        r.getDouble("prova"), r.getDouble("pontoDeParticipacao"),
+                        r.getInt("fk_idDisciplina")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todos os bimestres: " + ex.getMessage());
         }
 
         return listaBimestres;
+    }
+
+    public List<Bimestre> selecionarBimestresPorIdDisciplina(Integer id) {
+        List<Bimestre> lista = new ArrayList<>();
+
+        try (var stmt = conectar().prepareStatement("SELECT * FROM bimestre WHERE fk_idDisciplina = ?")) {
+            stmt.setInt(1, id);
+            var r = stmt.executeQuery();
+
+            while (r.next()) {
+                lista.add(new Bimestre(r.getInt("idBimestre"),
+                        r.getInt("numeroBimestre"), r.getDouble("teste"),
+                        r.getDouble("prova"), r.getDouble("pontoDeParticipacao"),
+                        r.getInt("fk_idDisciplina")));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro ao resgatar bimestres por disciplina: " + ex.getMessage());
+        }
+
+        return lista;
     }
 }
