@@ -84,4 +84,15 @@ public abstract class AbstratoController {
 
         application.getPrimaryStage().getScene().setRoot(root);
     }
+
+    @FXML
+    public void voltar() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("bemVindo.fxml"));
+        BorderPane root = fxmlLoader.load();
+
+        BemvindoController bemvindoController = fxmlLoader.getController();
+        bemvindoController.setApplication(application);
+
+        application.getPrimaryStage().getScene().setRoot(root);
+    }
 }
