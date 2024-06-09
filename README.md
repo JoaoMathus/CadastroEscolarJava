@@ -13,13 +13,10 @@ Para a interface gráfica, foi escolhido o javafx.
 - Armazenar as presenças dos alunos.
 
 ## UML das classes básicas:
-![UML das classes básicas](classes_uml.png "Classes")
+![UML das classes básicas](DiagramaDasEntidades.png "Classes")
 
 ## Classes de acesso ao banco de dados:
-![UML das classes de acesso ao banco de dados](classes_dao.png "Acesso ao banco")
-
-## Diagrama de entidades e relacionamentos:
-![Diagrama de entidades e relacionamentos](modelo_entidade_relacionamento.png)
+![UML das classes de acesso ao banco de dados](DiagramaDoBanco.png "Acesso ao banco")
 
 ## Diagrama lógico do banco de dados:
-![Diagrama lógico do banco de dados](diagrama_logico.png)
+![Diagrama lógico do banco de dados](DiagramaLogicoDoBanco.png)
