@@ -4,7 +4,6 @@ import br.com.escola.cadastro.cadastroescolarjava.entidades.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
@@ -15,10 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AlunoController implements BaseController, PessoaController {
+public class AlunoController extends AbstratoController implements IPessoaController {
     @FXML
     private TextField txtMatricula;
     @FXML
@@ -56,9 +53,9 @@ public class AlunoController implements BaseController, PessoaController {
     @FXML
     private TableColumn<Aluno, String> colunaTurma;
 
-    private SistemaCadastro application;
+    @Override
     public void setApplication(SistemaCadastro application) {
-        this.application = application;
+        super.setApplication(application);
         mostrarTodos();
         var numeroTurmas = application.getTurmaDao().selecionarTodos()
                 .stream().map(Turma::getNumeroDaSala).toList();
@@ -93,7 +90,7 @@ public class AlunoController implements BaseController, PessoaController {
                 txtTelefone.setText(novaSelecao.getTelefone());
                 txtCelular.setText(novaSelecao.getCelular());
                 txtCpfResponsavel.setText(novaSelecao.getCpfDoResponsavel());
-                var turmas = application.getTurmaDao().selecionarTodos();
+                var turmas = getApplication().getTurmaDao().selecionarTodos();
                 var turmaFiltrada = turmas.stream().filter(t -> t.getId() == novaSelecao.getIdTurma()).toList().getFirst();
                 escolhaTurma.setValue(turmaFiltrada.getNumeroDaSala());
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -132,66 +129,6 @@ public class AlunoController implements BaseController, PessoaController {
 
     @Override
     @FXML
-    public void irParaAluno() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        AlunoController alunoController = fxmlLoader.getController();
-        alunoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaProfessor() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        ProfessorController professorController = fxmlLoader.getController();
-        professorController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaTurma() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        TurmaController turmaController = fxmlLoader.getController();
-        turmaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaNotas() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        NotaController notaController = fxmlLoader.getController();
-        notaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaHistorico() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        HistoricoController historicoController = fxmlLoader.getController();
-        historicoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
     public void salvar() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
                 txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
@@ -205,7 +142,7 @@ public class AlunoController implements BaseController, PessoaController {
             return;
         }
 
-        var alunos = application.getAlunoDao().selecionarTodos();
+        var alunos = getApplication().getAlunoDao().selecionarTodos();
         for (var aluno : alunos) {
             if (aluno.getCpf().equals(txtCpf.getText())) {
                 // Atualização de dados.
@@ -215,21 +152,26 @@ public class AlunoController implements BaseController, PessoaController {
                 alert.setContentText("Deseja mesmo atualizar esses dados?");
 
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    var turma = application.getTurmaDao().selecionarTodos()
-                            .stream().filter(t -> t.getNumeroDaSala().equals(escolhaTurma.getValue())).toList()
-                            .getFirst();
-                    var alunoAtualizado = new Aluno(aluno.getId(), txtNome.getText(),
-                            dataNascimento.getValue().toString(), txtMatricula.getText(),
-                            txtTelefone.getText(), txtCelular.getText(), txtCpf.getText(),
-                            txtCpfResponsavel.getText(), escolhaTipoSanguineo.getValue(),
-                            turma.getId());
-                    application.getAlunoDao().alterar(alunoAtualizado);
-                    mostrarTodos();
-                }
+                result.ifPresent(buttonType -> {
+                    if (buttonType == ButtonType.OK) {
+                        // Atualizando o aluno no banco de dados
+                        var turma = getApplication().getTurmaDao().selecionarTodos()
+                                .stream().filter(t -> t.getNumeroDaSala().equals(escolhaTurma.getValue())).toList()
+                                .getFirst();
+                        var alunoAtualizado = new Aluno(aluno.getId(), txtNome.getText(),
+                                dataNascimento.getValue().toString(), txtMatricula.getText(),
+                                txtTelefone.getText(), txtCelular.getText(), txtCpf.getText(),
+                                txtCpfResponsavel.getText(), escolhaTipoSanguineo.getValue(),
+                                turma.getId());
+                        getApplication().getAlunoDao().alterar(alunoAtualizado);
+                        mostrarTodos();
+                    }
+                });
                 return;
             }
         }
+
+        // Novo aluno a ser inserido no banco de dados
 
         // Aplica o algoritmo para gerar a matrícula
         calcularMatricula();
@@ -240,23 +182,25 @@ public class AlunoController implements BaseController, PessoaController {
         alert.setContentText("Um novo aluno será salvo no banco de dados");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            var turmas = application.getTurmaDao().selecionarTodos();
-            int idTurma = -1;
-            String numeroTurma = "";
-            for (var turma : turmas) {
-                if (turma.getNumeroDaSala().equals(escolhaTurma.getValue())) {
-                    idTurma = turma.getId();
-                    numeroTurma = turma.getNumeroDaSala();
+        result.ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                var turmas = getApplication().getTurmaDao().selecionarTodos();
+                int idTurma = -1;
+                String numeroTurma = "";
+                for (var turma : turmas) {
+                    if (turma.getNumeroDaSala().equals(escolhaTurma.getValue())) {
+                        idTurma = turma.getId();
+                        numeroTurma = turma.getNumeroDaSala();
+                    }
                 }
-            }
-            var aluno = new Aluno(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
-                    txtCpf.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
-                    idTurma, numeroTurma, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
+                var aluno = new Aluno(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
+                        txtCpf.getText(), dataNascimento.getValue().toString(), txtMatricula.getText(),
+                        idTurma, numeroTurma, escolhaTipoSanguineo.getValue(), txtCpfResponsavel.getText());
 
-            // Adicionando o aluno
-            application.getAlunoDao().inserir(aluno);
-        }
+                // Inserindo o aluno
+                getApplication().getAlunoDao().inserir(aluno);
+            }
+        });
 
         limparCampos();
         mostrarTodos();
@@ -272,17 +216,20 @@ public class AlunoController implements BaseController, PessoaController {
 
         Optional<String> resultado = dialogo.showAndWait();
         resultado.ifPresent(matricula -> {
-            List<Aluno> listaAlunos = application.getAlunoDao().selecionarTodos()
+            // Caso houver vários alunos com a mesma matrícula (quem sabe...),
+            // todos podem ser deletados
+            List<Aluno> listaAlunos = getApplication().getAlunoDao().selecionarTodos()
                     .stream().filter(a -> a.getMatricula().equals(matricula)).toList();
             List<String> nomes = listaAlunos.stream().map(Pessoa::getNome).toList();
             StringBuilder mensagem = new StringBuilder();
+
             mensagem.append("Deseja mesmo deletar ");
             if (nomes.size() == 1) {
-                mensagem.append("esse aluno: " + nomes.getFirst() + "?");
+                mensagem.append("esse aluno: ").append(nomes.getFirst()).append("?");
             } else {
                 mensagem.append("esses alunos: ");
-                for (int i = 0; i < nomes.size(); i++) {
-                    mensagem.append(nomes.get(i));
+                for (String nome : nomes) {
+                    mensagem.append(nome);
                     mensagem.append(", ");
                 }
                 mensagem.append(nomes.getLast());
@@ -295,9 +242,11 @@ public class AlunoController implements BaseController, PessoaController {
             confirma.setContentText("O aluno será apagado do banco de dados");
 
             Optional<ButtonType> resposta = confirma.showAndWait();
-            if (resposta.get() == ButtonType.OK) {
-                listaAlunos.forEach(a -> application.getAlunoDao().deletar(a.getId()));
-            }
+            resposta.ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    listaAlunos.forEach(a -> getApplication().getAlunoDao().deletar(a.getId()));
+                }
+            });
         });
 
         limparCampos();
@@ -312,7 +261,7 @@ public class AlunoController implements BaseController, PessoaController {
             return;
         }
 
-        List<Aluno> alunosFiltrados = application.getAlunoDao().selecionarTodos()
+        List<Aluno> alunosFiltrados = getApplication().getAlunoDao().selecionarTodos()
                 .stream().filter(aluno -> aluno.getMatricula().equals(txtPesquisa.getText()))
                 .toList();
 
@@ -360,8 +309,8 @@ public class AlunoController implements BaseController, PessoaController {
     @Override
     public void mostrarTodos() {
         List<Aluno> listaFinal = new ArrayList<>();
-        var alunos = application.getAlunoDao().selecionarTodos();
-        var turmas = application.getTurmaDao().selecionarTodos();
+        var alunos = getApplication().getAlunoDao().selecionarTodos();
+        var turmas = getApplication().getTurmaDao().selecionarTodos();
         for (var aluno : alunos) {
             for (var turma : turmas) {
                 if (aluno.getIdTurma() == turma.getId()) {

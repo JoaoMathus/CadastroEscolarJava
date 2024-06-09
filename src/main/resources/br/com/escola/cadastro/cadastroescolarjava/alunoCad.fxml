@@ -173,6 +173,7 @@
                         <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
                         <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
                         <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
+                        <MenuItem id="menuBemvindo" mnemonicParsing="false" onAction="#irParaBemvindo" text="Tela inicial" />
                     </items>
                 </Menu>
             </menus>
