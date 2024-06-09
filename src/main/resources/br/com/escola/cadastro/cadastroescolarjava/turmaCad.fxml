@@ -67,6 +67,7 @@
             </GridPane>
             <Button id="btnSalvar" onAction="#salvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
             <Button id="btnDel" onAction="#deletar" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+            <Button id="btnVoltar" onAction="#voltar" layoutX="350.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
          </children>
       </AnchorPane>
    </center>
