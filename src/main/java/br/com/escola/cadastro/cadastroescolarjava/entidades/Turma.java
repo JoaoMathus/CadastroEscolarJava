@@ -7,33 +7,27 @@ public class Turma {
     private int capacidade;
     private int idProfessor;
     private String nomeProfessor;
+    private String anoCriada;
 
     public Turma() {}
 
-    public Turma(int id, int capacidade, String numeroDaSala, String serie, int idProfessor, String nomeProfessor) {
+    public Turma(int id, int capacidade, String numeroDaSala, String serie, int idProfessor, String nomeProfessor, String anoCriada) {
         this.id = id;
         this.capacidade = capacidade;
         this.numeroDaSala = numeroDaSala;
         this.serie = serie;
         this.idProfessor = idProfessor;
         this.nomeProfessor = nomeProfessor;
+        this.anoCriada = anoCriada;
     }
 
-    public Turma(String numeroDaSala, String serie, int idProfessor, String nomeProfessor) {
+    public Turma(String numeroDaSala, String serie, int idProfessor, String nomeProfessor, String anoCriada) {
         this.numeroDaSala = numeroDaSala;
         this.serie = serie;
         this.capacidade = 30;
         this.idProfessor = idProfessor;
         this.nomeProfessor = nomeProfessor;
-    }
-
-    public Turma(int id, int capacidade, String numeroDaSala, String serie, int idProfessor) {
-        this.id = id;
-        this.capacidade = capacidade;
-        this.numeroDaSala = numeroDaSala;
-        this.serie = serie;
-        this.idProfessor = idProfessor;
-        this.nomeProfessor = "Sem professor";
+        this.anoCriada = anoCriada;
     }
 
     public int getId() {
@@ -80,15 +74,24 @@ public class Turma {
         this.nomeProfessor = nomeProfessor;
     }
 
+    public String getAnoCriada() {
+        return anoCriada;
+    }
+
+    public void setAnoCriada(String anoCriada) {
+        this.anoCriada = anoCriada;
+    }
+
     @Override
     public String toString() {
         return "Turma{" +
                 "id=" + id +
                 ", numeroDaSala='" + numeroDaSala + '\'' +
                 ", serie='" + serie + '\'' +
-                ", capacidade='" + capacidade + '\'' +
-                ", idProfessor='" + idProfessor + '\'' +
+                ", capacidade=" + capacidade +
+                ", idProfessor=" + idProfessor +
                 ", nomeProfessor='" + nomeProfessor + '\'' +
+                ", anoCriada='" + anoCriada + '\'' +
                 '}';
     }
 }

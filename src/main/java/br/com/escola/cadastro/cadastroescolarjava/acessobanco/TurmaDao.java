@@ -12,15 +12,18 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             "    capacidade INTEGER,\n" +
             "    serie TEXT,\n" +
             "    numeroDaSala TEXT,\n" +
+            "    nomeProfessor TEXT,\n" +
+            "    anoCriada TEXT,\n" +
             "    fk_idProfessor INTEGER,\n" +
             "    FOREIGN KEY (fk_idProfessor) REFERENCES professor(idProfessor) ON DELETE CASCADE\n" +
             ")";
     private final String insertSql = "INSERT INTO turma (" +
-            "capacidade, serie, numeroDaSala, fk_idProfessor) VALUES (" +
-            "?, ?, ?, ?)";
+            "capacidade, serie, numeroDaSala, nomeProfessor, anoCriada, fk_idProfessor) VALUES (" +
+            "?, ?, ?, ?, ?, ?)";
     private final String deleteSql = "DELETE FROM turma WHERE idTurma = ?";
     private final String updateSql = "UPDATE turma SET capacidade = ?, " +
-            "serie = ?, numeroDaSala = ?, fk_idProfessor = ? WHERE idTurma = ?";
+            "serie = ?, numeroDaSala = ?, nomeProfessor = ?, anoCriada = ?, fk_idProfessor = ? " +
+            "WHERE idTurma = ?";
     private final String selectSql = "SELECT * FROM turma WHERE idTurma = ?";
     private final String selectAllSql = "SELECT * FROM turma";
 
@@ -50,7 +53,9 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             stmt.setInt(1, t.getCapacidade());
             stmt.setString(2, t.getSerie());
             stmt.setString(3, t.getNumeroDaSala());
-            stmt.setInt(4, t.getIdProfessor());
+            stmt.setString(4, t.getNomeProfessor());
+            stmt.setString(5, t.getAnoCriada());
+            stmt.setInt(6, t.getIdProfessor());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println("Erro ao inserir turma: " + ex.getMessage());
@@ -73,8 +78,10 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             stmt.setInt(1, t.getCapacidade());
             stmt.setString(2, t.getSerie());
             stmt.setString(3, t.getNumeroDaSala());
-            stmt.setInt(4, t.getIdProfessor());
-            stmt.setInt(5, t.getId());
+            stmt.setString(4, t.getNomeProfessor());
+            stmt.setString(5, t.getAnoCriada());
+            stmt.setInt(6, t.getIdProfessor());
+            stmt.setInt(7, t.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -92,7 +99,8 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             while (r.next()) {
                 t = new Turma(r.getInt("idTurma"), r.getInt("capacidade"),
                         r.getString("numeroDaSala"), r.getString("serie"),
-                        r.getInt("fk_idProfessor"));
+                        r.getInt("fk_idProfessor"), r.getString("nomeProfessor"),
+                        r.getString("anoCriada"));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar turma: " + ex.getMessage());
@@ -110,7 +118,8 @@ public class TurmaDao extends AbstratoDao <Turma, Integer> {
             while (r.next()) {
                 lista.add(new Turma(r.getInt("idTurma"), r.getInt("capacidade"),
                         r.getString("numeroDaSala"), r.getString("serie"),
-                        r.getInt("fk_idProfessor")));
+                        r.getInt("fk_idProfessor"), r.getString("nomeProfessor"),
+                        r.getString("anoCriada")));
             }
         } catch (SQLException ex) {
             System.err.println("Erro ao selecionar todas as turmas: " + ex.getMessage());

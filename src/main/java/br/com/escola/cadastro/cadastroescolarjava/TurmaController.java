@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -82,8 +83,35 @@ public class TurmaController extends AbstratoController implements IEntidadeCont
             return;
         }
 
-        // Lógica para criar o número da turma
         var turmas = getApplication().getTurmaDao().selecionarTodos();
+        var turmaExistente = turmas.stream().filter(t -> t.getNumeroDaSala().equals(txtTurma.getText()))
+                .toList();
+        if (!turmaExistente.isEmpty()) {
+            // Atualizar a turma
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmação");
+            alert.setHeaderText("Confirma essa atualização?");
+            alert.setContentText("Essa turma será atualizada no banco de dados!");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            result.ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    var estaTurma = turmaExistente.getFirst();
+                    estaTurma.setNomeProfessor(escolhaProfessor.getValue());
+                    estaTurma.setSerie(spinnerSerie.getValue());
+                    var professor = getApplication().getProfessorDao().selecionarTodos()
+                            .stream().filter(p -> p.getNome().equals(escolhaProfessor.getValue()))
+                            .toList().getFirst();
+                    estaTurma.setIdProfessor(professor.getId());
+
+                    getApplication().getTurmaDao().alterar(estaTurma);
+                    mostrarTodos();
+                }
+            });
+            return;
+        }
+
+        // Lógica para criar o número da turma
         var turmasFiltradas = turmas.stream().filter(t -> t.getSerie().equals(spinnerSerie.getValue()))
                 .toList();
         StringBuilder numero = new StringBuilder();
@@ -104,7 +132,9 @@ public class TurmaController extends AbstratoController implements IEntidadeCont
             if (buttonType == ButtonType.OK) {
                 var professor = getApplication().getProfessorDao().selecionarTodos()
                         .stream().filter(p -> p.getNome().equals(escolhaProfessor.getValue())).toList();
-                var turma = new Turma(txtTurma.getText(), String.valueOf(spinnerSerie.getValue()), professor.getFirst().getId(), professor.getFirst().getNome());
+                var turma = new Turma(txtTurma.getText(), String.valueOf(spinnerSerie.getValue()),
+                        professor.getFirst().getId(), professor.getFirst().getNome(),
+                        String.valueOf(LocalDate.now().getYear()));
 
                 getApplication().getTurmaDao().inserir(turma);
             }
@@ -128,7 +158,6 @@ public class TurmaController extends AbstratoController implements IEntidadeCont
             var listaFiltrada = listaTurmas.stream().filter(t -> t.getNumeroDaSala().equals(numero)).toList();
             var numeros = listaFiltrada.stream().map(Turma::getNumeroDaSala).toList();
             StringBuilder mensagem = new StringBuilder();
-            System.out.println(listaFiltrada);
             mensagem.append("Deseja mesmo deletar ");
             if (numeros.size() == 1) {
                 mensagem.append("essa turma: ").append(numeros.getFirst()).append("?");
@@ -168,6 +197,7 @@ public class TurmaController extends AbstratoController implements IEntidadeCont
     public void limparCampos() {
         txtTurma.setText("");
         escolhaProfessor.setValue(null);
+        spinnerSerie.getValueFactory().setValue("1");
     }
 
     @Override
