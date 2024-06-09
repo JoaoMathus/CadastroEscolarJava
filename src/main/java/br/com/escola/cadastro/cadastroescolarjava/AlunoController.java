@@ -57,12 +57,15 @@ public class AlunoController extends AbstratoController implements IPessoaContro
     public void setApplication(SistemaCadastro application) {
         super.setApplication(application);
         mostrarTodos();
-        var numeroTurmas = application.getTurmaDao().selecionarTodos()
+        var turmasDesteAno = application.getTurmaDao().selecionarTodos()
+                .stream().filter(t -> t.getAnoCriada().equals(
+                        String.valueOf(LocalDate.now().getYear())
+                )).toList();
+        var numeroTurmas = turmasDesteAno
                 .stream().map(Turma::getNumeroDaSala).toList();
         escolhaTurma.setItems(FXCollections.observableArrayList(numeroTurmas));
     }
 
-    // Começo de tudo...
     // Inicializando e configurando o controller.
     public void initialize() {
         aplicarValidacao(txtTelefone);
