@@ -31,27 +31,27 @@
                 <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button id="btnCadAluno" onAction="#irParaAluno" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" prefWidth="300.0" text="Cadastrar Aluno" textAlignment="CENTER" GridPane.rowIndex="1">
+                  <Button id="btnCadAluno" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#irParaAluno" prefHeight="45.0" prefWidth="300.0" text="Cadastrar Aluno" textAlignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button id="btnCadProf" onAction="#irParaProfessor" mnemonicParsing="false" prefWidth="300.0" text="Cadastrar Professor" GridPane.rowIndex="2">
+                  <Button id="btnCadProf" mnemonicParsing="false" onAction="#irParaProfessor" prefWidth="300.0" text="Cadastrar Professor" GridPane.rowIndex="2">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button id="btnCadTurma" onAction="#irParaTurma" mnemonicParsing="false" prefWidth="300.0" text="Criar Turma" GridPane.rowIndex="3">
+                  <Button id="btnCadTurma" mnemonicParsing="false" onAction="#irParaTurma" prefWidth="300.0" text="Criar Turma" GridPane.rowIndex="3">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button id="btnCadNota" onAction="#irParaNotas" mnemonicParsing="false" prefWidth="300.0" text="Cadastro de Notas" GridPane.rowIndex="4">
+                  <Button id="btnCadNota" mnemonicParsing="false" onAction="#irParaNotas" prefWidth="300.0" text="Cadastro de Notas" GridPane.rowIndex="4">
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <Button id="btnHistorico" onAction="#irParaHistorico" mnemonicParsing="false" prefWidth="300.0" text="Histórico" GridPane.rowIndex="5">
+                  <Button id="btnHistorico" mnemonicParsing="false" onAction="#irParaHistorico" prefWidth="300.0" text="Histórico" GridPane.rowIndex="5">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -79,7 +79,7 @@
                <Rectangle2D />
             </viewport>
             <image>
-               <Image url="@image1.png" />
+               <Image url="@assets/image1.png" />
             </image></ImageView>
        </StackPane>
    </left>

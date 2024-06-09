@@ -16,19 +16,19 @@ public class BemvindoController extends AbstratoController {
 
     private int currentIndex = 0;
     private final Image[] images = {
-            new Image(getClass().getResourceAsStream("image1.png")),
-            new Image(getClass().getResourceAsStream("image2.png")),
-            new Image(getClass().getResourceAsStream("image3.png")),
-            new Image(getClass().getResourceAsStream("image4.png"))
+            new Image(getClass().getResourceAsStream("assets/image1.png")),
+            new Image(getClass().getResourceAsStream("assets/image2.png")),
+            new Image(getClass().getResourceAsStream("assets/image3.png")),
+            new Image(getClass().getResourceAsStream("assets/image4.png"))
     };
 
     public void initialize() {
 
-        // Inicia o loop de imagens
+
         new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(6000); // Aguarda 3 segundos
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -38,17 +38,16 @@ public class BemvindoController extends AbstratoController {
         }).start();
 
 
-        // Creating a fade transition
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5), imageView);
-        fadeTransition.setFromValue(0.9); // Start fully visible
-        fadeTransition.setToValue(0.2);   // End invisible
-        fadeTransition.setAutoReverse(true); // Reverse the fade
-        fadeTransition.setCycleCount(Animation.INDEFINITE); // Run indefinitely
 
-        // Creating a timeline to control the fade transition
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(5), imageView);
+        fadeTransition.setFromValue(0.9);
+        fadeTransition.setToValue(0.1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.setCycleCount(Animation.INDEFINITE);
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, event -> {
-            fadeTransition.playFromStart(); // Start the fade transition from the beginning
-        }), new KeyFrame(Duration.seconds(6))); // Delay between each iteration
+            fadeTransition.playFromStart();
+        }), new KeyFrame(Duration.seconds(4)));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
