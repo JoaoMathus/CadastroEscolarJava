@@ -54,11 +54,6 @@ public class Disciplina {
         this.aprovado = aprovado;
     }
 
-    public float calcularMedia(float nota1, float nota2,
-                               float nota3, float nota4) {
-        return (nota1 + nota2 + nota3 + nota4) / 4;
-    }
-
     @Override
     public String toString() {
         return "Disciplina{" +
