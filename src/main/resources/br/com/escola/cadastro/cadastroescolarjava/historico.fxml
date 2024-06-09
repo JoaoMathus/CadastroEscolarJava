@@ -92,6 +92,7 @@
             </Label>
             <Button id="btnLimpar" onAction="#limparCampos" layoutX="200.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Limpar" />
             <Button id="btnBuscar" onAction="#selecionar" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Buscar" />
+            <Button id="btnVoltar" onAction="#voltar" layoutX="350.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
             <GridPane id="gridNotas" layoutX="170.0" layoutY="380.0">
               <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
