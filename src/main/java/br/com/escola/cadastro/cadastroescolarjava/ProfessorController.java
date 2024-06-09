@@ -219,6 +219,7 @@ public class ProfessorController extends AbstratoController implements IPessoaCo
         txtCelular.setText("");
         txtCpf.setText("");
         txtPesquisa.setText("");
+        dataNascimento.setValue(null);
     }
 
     @Override
