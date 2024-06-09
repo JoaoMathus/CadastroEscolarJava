@@ -87,9 +87,11 @@
                   </TextField>
                </children>
             </GridPane>
-            <Button id="btnPesquisar" onAction="#selecionar" layoutX="50.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
+            <Button id="btnPesquisar" onAction="#selecionar" layoutX="400.0" layoutY="512.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
             <Button id="btnSalvar" onAction="#salvar" layoutX="200.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
             <Button id="btnDeletar" onAction="#deletar" layoutX="350.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
+            <Button id="btnVoltar" onAction="#voltar" layoutX="500.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
+            <Button id="btnNovo" onAction="#limparCampos" layoutX="50.0" layoutY="450.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
             <Label id="lblProcurar" layoutX="17.0" layoutY="512.0" text="Procurar:">
                <font>
                   <Font size="18.0" />
