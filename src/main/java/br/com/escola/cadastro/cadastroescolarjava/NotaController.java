@@ -5,19 +5,15 @@ import br.com.escola.cadastro.cadastroescolarjava.entidades.Bimestre;
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Disciplina;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class NotaController implements BaseController, EntidadeController {
+public class NotaController extends AbstratoController implements IEntidadeController {
     @FXML
     private TableView<Aluno> tabelaAlunos;
     @FXML
@@ -63,28 +59,49 @@ public class NotaController implements BaseController, EntidadeController {
     @FXML
     private Spinner<Double> spinnerParticipacao4bin;
 
-    private SistemaCadastro application;
+    private List<Spinner<Double>> spinnerTesteList;
+    private List<Spinner<Double>> spinnerProvaList;
+    private List<Spinner<Double>> spinnerParticipacaoList;
+    private List<TextField> txtSomatorioList;
+
+    @Override
     public void setApplication(SistemaCadastro application) {
-        this.application = application;
+        super.setApplication(application);
         mostrarTodos();
     }
 
+    @FXML
     public void initialize() {
         configurarCelulasDaTabela();
         configurarSelecaoDaTabela();
 
-        spinnerTeste1bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 3, 0));
-        spinnerTeste2bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 3, 0));
-        spinnerTeste3bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 3, 0));
-        spinnerTeste4bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 3, 0));
-        spinnerProva1bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 6, 0));
-        spinnerProva2bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 6, 0));
-        spinnerProva3bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 6, 0));
-        spinnerProva4bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 6, 0));
-        spinnerParticipacao1bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0));
-        spinnerParticipacao2bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0));
-        spinnerParticipacao3bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0));
-        spinnerParticipacao4bin.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0));
+        spinnerTesteList = new ArrayList<>();
+        spinnerTesteList.add(spinnerTeste1bin);
+        spinnerTesteList.add(spinnerTeste2bin);
+        spinnerTesteList.add(spinnerTeste3bin);
+        spinnerTesteList.add(spinnerTeste4bin);
+
+        spinnerProvaList = new ArrayList<>();
+        spinnerProvaList.add(spinnerProva1bin);
+        spinnerProvaList.add(spinnerProva2bin);
+        spinnerProvaList.add(spinnerProva3bin);
+        spinnerProvaList.add(spinnerProva4bin);
+
+        spinnerParticipacaoList = new ArrayList<>();
+        spinnerParticipacaoList.add(spinnerParticipacao1bin);
+        spinnerParticipacaoList.add(spinnerParticipacao2bin);
+        spinnerParticipacaoList.add(spinnerParticipacao3bin);
+        spinnerParticipacaoList.add(spinnerParticipacao4bin);
+
+        txtSomatorioList = new ArrayList<>();
+        txtSomatorioList.add(txtSomatorio1bin);
+        txtSomatorioList.add(txtSomatorio2bin);
+        txtSomatorioList.add(txtSomatorio3bin);
+        txtSomatorioList.add(txtSomatorio4bin);
+
+        spinnerTesteList.forEach(t -> t.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 3, 0)));
+        spinnerProvaList.forEach(p -> p.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 6, 0)));
+        spinnerParticipacaoList.forEach(p -> p.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1, 0)));
     }
 
     @Override
@@ -105,66 +122,6 @@ public class NotaController implements BaseController, EntidadeController {
 
     @Override
     @FXML
-    public void irParaAluno() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        AlunoController alunoController = fxmlLoader.getController();
-        alunoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaProfessor() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        ProfessorController professorController = fxmlLoader.getController();
-        professorController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaTurma() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        TurmaController turmaController = fxmlLoader.getController();
-        turmaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaNotas() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        NotaController notaController = fxmlLoader.getController();
-        notaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaHistorico() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        HistoricoController historicoController = fxmlLoader.getController();
-        historicoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
     public void salvar() {
         if (txtMatricula.getText().isEmpty() || escolhaMateria.getValue().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -176,7 +133,7 @@ public class NotaController implements BaseController, EntidadeController {
             return;
         }
 
-        var aluno = application.getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
+        var aluno = getApplication().getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
         if (aluno == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao salvar notas");
@@ -193,100 +150,102 @@ public class NotaController implements BaseController, EntidadeController {
         alert.setContentText("As notas serão gravadas no banco de dados.");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            var disciplinas = application.getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
-            if (disciplinas.isEmpty()) {
-                String[] nomeDasDisciplinas = new String[]{
-                        "Matemática", "História", "Português",
-                        "Inglês", "Geografia", "Ciências", "Redação",
-                        "Artes"
-                };
+        result.ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                var disciplinas = getApplication().getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
+                if (disciplinas.isEmpty()) {
+                    String[] nomeDasDisciplinas = new String[]{
+                            "Matemática", "História", "Português",
+                            "Inglês", "Geografia", "Ciências", "Redação",
+                            "Artes"
+                    };
 
-                for (var nome : nomeDasDisciplinas) {
-                    var d = new Disciplina();
-                    d.setNome(nome);
-                    d.setAprovado(false);
-                    d.setAnoLetivo(String.valueOf(LocalDate.now().getYear()));
-                    d.setIdAluno(aluno.getId());
-                    application.getDisciplinaDao().inserir(d);
+                    for (var nome : nomeDasDisciplinas) {
+                        var d = new Disciplina();
+                        d.setNome(nome);
+                        d.setAprovado(false);
+                        d.setAnoLetivo(String.valueOf(LocalDate.now().getYear()));
+                        d.setIdAluno(aluno.getId());
+                        getApplication().getDisciplinaDao().inserir(d);
+                    }
+                    disciplinas = getApplication().getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
                 }
-                disciplinas = application.getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
+                var estaDisciplina = disciplinas.stream().filter(d -> d.getNome().equals(escolhaMateria.getValue()))
+                        .toList().getFirst();
+                var estesBimestres = getApplication().getBimestreDao().selecionarBimestresPorIdDisciplina(estaDisciplina
+                        .getId());
+                if (estesBimestres.isEmpty()) {
+                    // Salvar os bimestres
+                    // Bimestre 1
+                    var b1 = new Bimestre();
+                    b1.setIdDisciplina(estaDisciplina.getId());
+                    b1.setNumeroBimestre(1);
+                    b1.setTeste(spinnerTeste1bin.getValue());
+                    b1.setProva(spinnerProva1bin.getValue());
+                    b1.setPontoDeParticipacao(spinnerParticipacao1bin.getValue());
+                    getApplication().getBimestreDao().inserir(b1);
+
+                    // Bimestre 2
+                    var b2 = new Bimestre();
+                    b2.setIdDisciplina(estaDisciplina.getId());
+                    b2.setNumeroBimestre(2);
+                    b2.setTeste(spinnerTeste2bin.getValue());
+                    b2.setProva(spinnerProva2bin.getValue());
+                    b2.setPontoDeParticipacao(spinnerParticipacao2bin.getValue());
+                    getApplication().getBimestreDao().inserir(b2);
+
+                    // Bimestre 3
+                    var b3 = new Bimestre();
+                    b3.setIdDisciplina(estaDisciplina.getId());
+                    b3.setNumeroBimestre(3);
+                    b3.setTeste(spinnerTeste3bin.getValue());
+                    b3.setProva(spinnerProva3bin.getValue());
+                    b3.setPontoDeParticipacao(spinnerParticipacao3bin.getValue());
+                    getApplication().getBimestreDao().inserir(b3);
+
+                    // Bimestre 4
+                    var b4 = new Bimestre();
+                    b4.setIdDisciplina(estaDisciplina.getId());
+                    b4.setNumeroBimestre(4);
+                    b4.setTeste(spinnerTeste4bin.getValue());
+                    b4.setProva(spinnerProva4bin.getValue());
+                    b4.setPontoDeParticipacao(spinnerParticipacao4bin.getValue());
+                    getApplication().getBimestreDao().inserir(b4);
+
+                    limparCampos();
+                } else {
+                    // Bimestre 1
+                    var b1 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 1).toList().getFirst();
+                    b1.setTeste(spinnerTeste1bin.getValue());
+                    b1.setProva(spinnerProva1bin.getValue());
+                    b1.setPontoDeParticipacao(spinnerParticipacao1bin.getValue());
+                    getApplication().getBimestreDao().alterar(b1);
+
+                    // Bimestre 2
+                    var b2 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 2).toList().getFirst();
+                    b2.setTeste(spinnerTeste2bin.getValue());
+                    b2.setProva(spinnerProva2bin.getValue());
+                    b2.setPontoDeParticipacao(spinnerParticipacao2bin.getValue());
+                    getApplication().getBimestreDao().alterar(b2);
+
+                    // Bimestre 3
+                    var b3 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 3).toList().getFirst();
+                    b3.setTeste(spinnerTeste3bin.getValue());
+                    b3.setProva(spinnerProva3bin.getValue());
+                    b3.setPontoDeParticipacao(spinnerParticipacao3bin.getValue());
+                    getApplication().getBimestreDao().alterar(b3);
+
+                    // Bimestre 4
+                    var b4 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 4).toList().getFirst();
+                    b4.setTeste(spinnerTeste4bin.getValue());
+                    b4.setProva(spinnerProva4bin.getValue());
+                    b4.setPontoDeParticipacao(spinnerParticipacao4bin.getValue());
+                    getApplication().getBimestreDao().alterar(b4);
+
+                    limparCampos();
+                }
             }
-            var estaDisciplina = disciplinas.stream().filter(d -> d.getNome().equals(escolhaMateria.getValue()))
-                    .toList().getFirst();
-            var estesBimestres = application.getBimestreDao().selecionarBimestresPorIdDisciplina(estaDisciplina
-                    .getId());
-            if (estesBimestres.isEmpty()) {
-                // Salvar os bimestres
-                // Bimestre 1
-                var b1 = new Bimestre();
-                b1.setIdDisciplina(estaDisciplina.getId());
-                b1.setNumeroBimestre(1);
-                b1.setTeste(spinnerTeste1bin.getValue());
-                b1.setProva(spinnerProva1bin.getValue());
-                b1.setPontoDeParticipacao(spinnerParticipacao1bin.getValue());
-                application.getBimestreDao().inserir(b1);
-
-                // Bimestre 2
-                var b2 = new Bimestre();
-                b2.setIdDisciplina(estaDisciplina.getId());
-                b2.setNumeroBimestre(2);
-                b2.setTeste(spinnerTeste2bin.getValue());
-                b2.setProva(spinnerProva2bin.getValue());
-                b2.setPontoDeParticipacao(spinnerParticipacao2bin.getValue());
-                application.getBimestreDao().inserir(b2);
-
-                // Bimestre 3
-                var b3 = new Bimestre();
-                b3.setIdDisciplina(estaDisciplina.getId());
-                b3.setNumeroBimestre(3);
-                b3.setTeste(spinnerTeste3bin.getValue());
-                b3.setProva(spinnerProva3bin.getValue());
-                b3.setPontoDeParticipacao(spinnerParticipacao3bin.getValue());
-                application.getBimestreDao().inserir(b3);
-
-                // Bimestre 4
-                var b4 = new Bimestre();
-                b4.setIdDisciplina(estaDisciplina.getId());
-                b4.setNumeroBimestre(4);
-                b4.setTeste(spinnerTeste4bin.getValue());
-                b4.setProva(spinnerProva4bin.getValue());
-                b4.setPontoDeParticipacao(spinnerParticipacao4bin.getValue());
-                application.getBimestreDao().inserir(b4);
-
-                limparCampos();
-            } else {
-                // Bimestre 1
-                var b1 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 1).toList().getFirst();
-                b1.setTeste(spinnerTeste1bin.getValue());
-                b1.setProva(spinnerProva1bin.getValue());
-                b1.setPontoDeParticipacao(spinnerParticipacao1bin.getValue());
-                application.getBimestreDao().alterar(b1);
-
-                // Bimestre 2
-                var b2 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 2).toList().getFirst();
-                b2.setTeste(spinnerTeste2bin.getValue());
-                b2.setProva(spinnerProva2bin.getValue());
-                b2.setPontoDeParticipacao(spinnerParticipacao2bin.getValue());
-                application.getBimestreDao().alterar(b2);
-
-                // Bimestre 3
-                var b3 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 3).toList().getFirst();
-                b3.setTeste(spinnerTeste3bin.getValue());
-                b3.setProva(spinnerProva3bin.getValue());
-                b3.setPontoDeParticipacao(spinnerParticipacao3bin.getValue());
-                application.getBimestreDao().alterar(b3);
-
-                // Bimestre 4
-                var b4 = estesBimestres.stream().filter(b -> b.getNumeroBimestre() == 4).toList().getFirst();
-                b4.setTeste(spinnerTeste4bin.getValue());
-                b4.setProva(spinnerProva4bin.getValue());
-                b4.setPontoDeParticipacao(spinnerParticipacao4bin.getValue());
-                application.getBimestreDao().alterar(b4);
-
-                limparCampos();
-            }
-        }
+        });
     }
 
     @Override
@@ -307,7 +266,7 @@ public class NotaController implements BaseController, EntidadeController {
             return;
         }
 
-        var aluno = application.getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
+        var aluno = getApplication().getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
         if (aluno == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao buscar notas");
@@ -318,7 +277,7 @@ public class NotaController implements BaseController, EntidadeController {
             return;
         }
 
-        var disciplinasDoAluno = application.getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
+        var disciplinasDoAluno = getApplication().getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
         if (disciplinasDoAluno.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao buscar notas");
@@ -331,7 +290,7 @@ public class NotaController implements BaseController, EntidadeController {
 
         var estaDisciplina = disciplinasDoAluno.stream().filter(d -> d.getNome().equals(escolhaMateria.getValue()))
                 .toList().getFirst();
-        var bimestres = application.getBimestreDao().selecionarBimestresPorIdDisciplina(estaDisciplina.getId());
+        var bimestres = getApplication().getBimestreDao().selecionarBimestresPorIdDisciplina(estaDisciplina.getId());
         if (bimestres.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao buscar notas");
@@ -374,29 +333,17 @@ public class NotaController implements BaseController, EntidadeController {
     public void limparCampos() {
         txtMatricula.setText("");
         escolhaMateria.setValue(null);
-        spinnerTeste1bin.getValueFactory().setValue(0.0);
-        spinnerTeste2bin.getValueFactory().setValue(0.0);
-        spinnerTeste3bin.getValueFactory().setValue(0.0);
-        spinnerTeste4bin.getValueFactory().setValue(0.0);
-        spinnerProva1bin.getValueFactory().setValue(0.0);
-        spinnerProva2bin.getValueFactory().setValue(0.0);
-        spinnerProva3bin.getValueFactory().setValue(0.0);
-        spinnerProva4bin.getValueFactory().setValue(0.0);
-        spinnerParticipacao1bin.getValueFactory().setValue(0.0);
-        spinnerParticipacao2bin.getValueFactory().setValue(0.0);
-        spinnerParticipacao3bin.getValueFactory().setValue(0.0);
-        spinnerParticipacao4bin.getValueFactory().setValue(0.0);
-        txtSomatorio1bin.setText("");
-        txtSomatorio2bin.setText("");
-        txtSomatorio3bin.setText("");
-        txtSomatorio4bin.setText("");
+        spinnerTesteList.forEach(t -> t.getValueFactory().setValue(0.0));
+        spinnerProvaList.forEach(p -> p.getValueFactory().setValue(0.0));
+        spinnerParticipacaoList.forEach(p -> p.getValueFactory().setValue(0.0));
+        txtSomatorioList.forEach(s -> s.setText(""));
     }
 
     @Override
     public void mostrarTodos() {
         List<Aluno> listaFinal = new ArrayList<>();
-        var alunos = application.getAlunoDao().selecionarTodos();
-        var turmas = application.getTurmaDao().selecionarTodos();
+        var alunos = getApplication().getAlunoDao().selecionarTodos();
+        var turmas = getApplication().getTurmaDao().selecionarTodos();
         for (var aluno : alunos) {
             for (var turma : turmas) {
                 if (aluno.getIdTurma() == turma.getId()) {
