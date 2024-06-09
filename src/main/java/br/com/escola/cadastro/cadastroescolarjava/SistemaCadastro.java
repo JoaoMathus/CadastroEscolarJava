@@ -2,6 +2,7 @@ package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.acessobanco.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,10 +20,15 @@ public class SistemaCadastro extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(SistemaCadastro.class.getResource("alunoCad.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SistemaCadastro.class.getResource("bemVindo.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Cadastro Escolar");
         primaryStage.setScene(scene);
+
+        primaryStage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
 
         // Iniciando o banco de dados
         professorDao = new ProfessorDao();
@@ -31,8 +37,8 @@ public class SistemaCadastro extends Application {
         disciplinaDao = new DisciplinaDao();
         bimestreDao = new BimestreDao();
 
-        AlunoController alunoController = fxmlLoader.getController();
-        alunoController.setApplication(this);
+        BemvindoController bemvindoController = fxmlLoader.getController();
+        bemvindoController.setApplication(this);
 
         primaryStage.show();
     }
