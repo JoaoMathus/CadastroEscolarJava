@@ -1,17 +1,19 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
 import br.com.escola.cadastro.cadastroescolarjava.entidades.Disciplina;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
-public class HistoricoController implements BaseController {
+public class HistoricoController extends AbstratoController {
     @FXML
     private TextField txtMatricula;
     @FXML
@@ -53,75 +55,9 @@ public class HistoricoController implements BaseController {
     @FXML
     private TextField txtSomatorio4bin;
 
-    private SistemaCadastro application;
-
-    public void setApplication(SistemaCadastro application) {
-        this.application = application;
-    }
-
     public void initialize() {
         spinnerAno.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, 200));
         spinnerAno.getValueFactory().setValue(LocalDate.now().getYear());
-    }
-
-    @Override
-    @FXML
-    public void irParaAluno() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        AlunoController alunoController = fxmlLoader.getController();
-        alunoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaProfessor() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        ProfessorController professorController = fxmlLoader.getController();
-        professorController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaTurma() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        TurmaController turmaController = fxmlLoader.getController();
-        turmaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaNotas() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        NotaController notaController = fxmlLoader.getController();
-        notaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaHistorico() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        HistoricoController historicoController = fxmlLoader.getController();
-        historicoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
     }
 
     @FXML
@@ -161,7 +97,7 @@ public class HistoricoController implements BaseController {
             return;
         }
 
-        var aluno = application.getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
+        var aluno = getApplication().getAlunoDao().selecionarPorMatricula(txtMatricula.getText());
         if (aluno == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao resgatar histórico");
@@ -173,7 +109,7 @@ public class HistoricoController implements BaseController {
         }
 
         // Resgatando disciplina selecionada
-        var disciplinasDoAluno = application.getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
+        var disciplinasDoAluno = getApplication().getDisciplinaDao().selecionarTodasPorIdAluno(aluno.getId());
         if (disciplinasDoAluno.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao resgatar histórico");
@@ -201,7 +137,7 @@ public class HistoricoController implements BaseController {
             return;
         }
         // Resgatando bimestres
-        var bimestres = application.getBimestreDao().selecionarBimestresPorIdDisciplina(disciplinaSelecionada.getId());
+        var bimestres = getApplication().getBimestreDao().selecionarBimestresPorIdDisciplina(disciplinaSelecionada.getId());
         if (bimestres.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro ao resgatar histórico");
