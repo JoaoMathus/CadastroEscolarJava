@@ -4,21 +4,22 @@ import br.com.escola.cadastro.cadastroescolarjava.entidades.Professor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.util.converter.FormatStringConverter;
-import javafx.util.converter.LocalDateStringConverter;
 
-import java.io.IOException;
-import java.text.Format;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
-public class ProfessorController implements BaseController, PessoaController {
+public class ProfessorController extends AbstratoController implements IPessoaController {
     @FXML
     private TextField txtNome;
     @FXML
@@ -40,10 +41,9 @@ public class ProfessorController implements BaseController, PessoaController {
     @FXML
     private TableColumn<Professor, String> colunaCelular;
 
-
-    private SistemaCadastro application;
+    @Override
     public void setApplication(SistemaCadastro application) {
-        this.application = application;
+        super.setApplication(application);
         mostrarTodos();
     }
 
@@ -107,66 +107,6 @@ public class ProfessorController implements BaseController, PessoaController {
 
     @Override
     @FXML
-    public void irParaAluno() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alunoCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        AlunoController alunoController = fxmlLoader.getController();
-        alunoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaProfessor() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("professorCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        ProfessorController professorController = fxmlLoader.getController();
-        professorController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaTurma() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("turmaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        TurmaController turmaController = fxmlLoader.getController();
-        turmaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaNotas() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notaCad.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        NotaController notaController = fxmlLoader.getController();
-        notaController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
-    public void irParaHistorico() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("historico.fxml"));
-        BorderPane root = fxmlLoader.load();
-
-        HistoricoController historicoController = fxmlLoader.getController();
-        historicoController.setApplication(application);
-
-        application.getPrimaryStage().getScene().setRoot(root);
-    }
-
-    @Override
-    @FXML
     public void salvar() {
         if (txtNome.getText().isEmpty() || dataNascimento.getValue().toString().isEmpty() ||
                 txtTelefone.getText().isEmpty() || txtCelular.getText().isEmpty() ||
@@ -180,7 +120,7 @@ public class ProfessorController implements BaseController, PessoaController {
             return;
         }
 
-        var professores = application.getProfessorDao().selecionarTodos();
+        var professores = getApplication().getProfessorDao().selecionarTodos();
         for (var professor : professores) {
             if (txtCpf.getText().equals(professor.getCpf())) {
                 // Atualização de dados.
@@ -190,13 +130,15 @@ public class ProfessorController implements BaseController, PessoaController {
                 alert.setContentText("Deseja mesmo atualizar esses dados?");
 
                 Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    var professorAtualizado = new Professor(professor.getId(), txtNome.getText(),
-                            txtTelefone.getText(), txtCelular.getText(), dataNascimento.getValue().toString(),
-                            txtCpf.getText());
-                    application.getProfessorDao().alterar(professorAtualizado);
-                    mostrarTodos();
-                }
+                result.ifPresent(buttonType -> {
+                    if (buttonType == ButtonType.OK) {
+                        var professorAtualizado = new Professor(professor.getId(), txtNome.getText(),
+                                txtTelefone.getText(), txtCelular.getText(), dataNascimento.getValue().toString(),
+                                txtCpf.getText());
+                        getApplication().getProfessorDao().alterar(professorAtualizado);
+                        mostrarTodos();
+                    }
+                });
                 return;
             }
         }
@@ -207,11 +149,13 @@ public class ProfessorController implements BaseController, PessoaController {
         alert.setContentText("Um novo professor será salvo no banco de dados");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            var p = new Professor(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
-                    txtCpf.getText(), dataNascimento.getValue().toString());
-            application.getProfessorDao().inserir(p);
-        }
+        result.ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                var p = new Professor(txtNome.getText(), txtTelefone.getText(), txtCelular.getText(),
+                        txtCpf.getText(), dataNascimento.getValue().toString());
+                getApplication().getProfessorDao().inserir(p);
+            }
+        });
 
         limparCampos();
         mostrarTodos();
@@ -233,14 +177,16 @@ public class ProfessorController implements BaseController, PessoaController {
             confirma.setContentText("O professor será apagado do banco de dados");
 
             Optional<ButtonType> resposta = confirma.showAndWait();
-            if (resposta.get() == ButtonType.OK) {
-                List<Professor> professores = application.getProfessorDao().selecionarTodos();
-                for (Professor professor : professores) {
-                    if (professor.getCpf().equals(cpf)) {
-                        application.getProfessorDao().deletar(professor.getId());
+            resposta.ifPresent(buttonType -> {
+                if (buttonType == ButtonType.OK) {
+                    List<Professor> professores = getApplication().getProfessorDao().selecionarTodos();
+                    for (Professor professor : professores) {
+                        if (professor.getCpf().equals(cpf)) {
+                            getApplication().getProfessorDao().deletar(professor.getId());
+                        }
                     }
                 }
-            }
+            });
         });
     }
 
@@ -252,12 +198,12 @@ public class ProfessorController implements BaseController, PessoaController {
         colunaCelular.setCellValueFactory(new PropertyValueFactory<>("celular"));
 
         if (txtPesquisa.getText().equalsIgnoreCase("todos")) {
-            List<Professor> todosProfessores = application.getProfessorDao().selecionarTodos();
+            List<Professor> todosProfessores = getApplication().getProfessorDao().selecionarTodos();
             tabelaProfessores.setItems(FXCollections.observableArrayList(todosProfessores));
             return;
         }
 
-        List<Professor> professoresFiltrados = application.getProfessorDao().selecionarTodos()
+        List<Professor> professoresFiltrados = getApplication().getProfessorDao().selecionarTodos()
                 .stream().filter(professor -> professor.getCpf().equals(txtPesquisa.getText()))
                 .toList();
 
@@ -277,6 +223,6 @@ public class ProfessorController implements BaseController, PessoaController {
 
     @Override
     public void mostrarTodos() {
-        tabelaProfessores.setItems(FXCollections.observableArrayList(application.getProfessorDao().selecionarTodos()));
+        tabelaProfessores.setItems(FXCollections.observableArrayList(getApplication().getProfessorDao().selecionarTodos()));
     }
 }
