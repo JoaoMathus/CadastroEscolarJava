@@ -80,6 +80,7 @@
                   <MenuItem id="menuTurma" onAction="#irParaTurma" mnemonicParsing="false" text="Criar Turma" />
                   <MenuItem id="menuNota" onAction="#irParaNotas" mnemonicParsing="false" text="Cadastro de Notas" />
                   <MenuItem id="menuHist" onAction="#irParaHistorico" mnemonicParsing="false" text="Histórico" />
+                  <MenuItem id="menuBemvindo" mnemonicParsing="false" onAction="#irParaBemvindo" text="Tela inicial" />
                </items>
             </Menu>
          </menus>
