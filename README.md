@@ -19,4 +19,4 @@ Para a interface gráfica, foi escolhido o javafx.
 ![UML das classes de acesso ao banco de dados](DiagramaDoBanco.png "Acesso ao banco")
 
 ## Diagrama lógico do banco de dados:
-![Diagrama lógico do banco de dados](DiagramaLogicoDoBanco.png)
+![Diagrama lógico do banco de dados](DiagramaLogicoBanco.png)
