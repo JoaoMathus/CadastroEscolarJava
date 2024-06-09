@@ -2,7 +2,7 @@ package br.com.escola.cadastro.cadastroescolarjava;
 
 import javafx.scene.control.TextField;
 
-public interface PessoaController extends EntidadeController{
+public interface IPessoaController extends IEntidadeController {
     // Aplica a validação do input dos campos numéricos
     void aplicarValidacao(TextField tf);
 

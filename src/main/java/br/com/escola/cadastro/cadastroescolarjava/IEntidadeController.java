@@ -1,8 +1,6 @@
 package br.com.escola.cadastro.cadastroescolarjava;
 
-import javafx.scene.control.TextField;
-
-public interface EntidadeController {
+public interface IEntidadeController {
     void salvar();
     void deletar();
     void selecionar();
