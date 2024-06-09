@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -7,6 +9,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -19,13 +22,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <BorderPane id="borderPane" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.escola.cadastro.cadastroescolarjava.NotaController">
    <center>
       <AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane id="gridPesqui" layoutX="20.0" layoutY="76.0">
+            <GridPane id="gridPesqui" layoutX="20.0" layoutY="76.0" AnchorPane.leftAnchor="300.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
                   <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="245.0" minWidth="245.0" prefWidth="245.0" />
@@ -48,6 +49,9 @@
                            <String fx:value="Artes" />
                         </FXCollections>
                      </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ChoiceBox>
                   <Label text="Matrícula:">
                      <font>
@@ -122,18 +126,54 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Spinner id="spinTestePri" fx:id="spinnerTeste1bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1" editable="true" />
-                  <Spinner id="spinParticipacaoQua" fx:id="spinnerParticipacao4bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="3" editable="true" />
-                  <Spinner id="spinParticipacaoTer" fx:id="spinnerParticipacao3bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="3" editable="true" />
-                  <Spinner id="spinParticipacaoSeg" fx:id="spinnerParticipacao2bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="3" editable="true" />
-                  <Spinner id="spinParticipacaoPri" fx:id="spinnerParticipacao1bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3" editable="true" />
-                  <Spinner id="spinTesteQua" fx:id="spinnerTeste4bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="1" editable="true" />
-                  <Spinner id="spinProvaQua" fx:id="spinnerProva4bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="2" editable="true" />
-                  <Spinner id="spinProvaTer" fx:id="spinnerProva3bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="2" editable="true" />
-                  <Spinner id="spinProvaSeg" fx:id="spinnerProva2bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2" editable="true" />
-                  <Spinner id="spinProvaPri" fx:id="spinnerProva1bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" editable="true" />
-                  <Spinner id="spinTesteTer" fx:id="spinnerTeste3bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="1" editable="true" />
-                  <Spinner id="spinTesteSeg" fx:id="spinnerTeste2bin" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1" editable="true" />
+                  <Spinner id="spinTestePri" fx:id="spinnerTeste1bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinParticipacaoQua" fx:id="spinnerParticipacao4bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinParticipacaoTer" fx:id="spinnerParticipacao3bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinParticipacaoSeg" fx:id="spinnerParticipacao2bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinParticipacaoPri" fx:id="spinnerParticipacao1bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinTesteQua" fx:id="spinnerTeste4bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinProvaQua" fx:id="spinnerProva4bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinProvaTer" fx:id="spinnerProva3bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinProvaSeg" fx:id="spinnerProva2bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinProvaPri" fx:id="spinnerProva1bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinTesteTer" fx:id="spinnerTeste3bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
+                  <Spinner id="spinTesteSeg" fx:id="spinnerTeste2bin" editable="true" prefHeight="30.0" prefWidth="103.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Spinner>
                   <TextField id="txtSomatorioPri" fx:id="txtSomatorio1bin" editable="false" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
@@ -176,9 +216,24 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button id="btnSalvar" onAction="#salvar" layoutX="50.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-            <Button id="btnBuscar" onAction="#selecionar" layoutX="50.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Buscar" />
-            <Button id="btnVoltar" onAction="#voltar" layoutX="200.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
+            <Button id="btnSalvar" layoutX="50.0" layoutY="490.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar" AnchorPane.leftAnchor="300.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button id="btnBuscar" layoutX="50.0" layoutY="181.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Buscar" AnchorPane.leftAnchor="300.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button id="btnLimpar" layoutX="450.0" layoutY="181.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Limpar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="btnVoltar" fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </center>
@@ -187,11 +242,12 @@
          <menus>
             <Menu id="menu" mnemonicParsing="false" text="Cadastros">
                <items>
-                  <MenuItem id="menuAluno" onAction="#irParaAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
-                  <MenuItem id="menuProfessor" onAction="#irParaProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
-                  <MenuItem id="menuTurma" onAction="#irParaTurma" mnemonicParsing="false" text="Criar Turma" />
-                  <MenuItem id="menuNota" onAction="#irParaNotas" mnemonicParsing="false" text="Cadastro de Notas" />
-                  <MenuItem id="menuHist" onAction="#irParaHistorico" mnemonicParsing="false" text="Histórico" />
+                  <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
+                  <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
+                  <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
+                  <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
+                  <SeparatorMenuItem id="separador" mnemonicParsing="false" />
                   <MenuItem id="menuBemvindo" mnemonicParsing="false" onAction="#irParaBemvindo" text="Tela inicial" />
                </items>
             </Menu>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -27,7 +29,7 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <GridPane id="gridPesqui" layoutX="20.0" layoutY="76.0" maxHeight="140.0" maxWidth="421.0" minHeight="140.0" minWidth="421.0" prefHeight="140.0" prefWidth="421.0">
+            <GridPane id="gridPesqui" layoutX="20.0" layoutY="76.0" maxHeight="140.0" maxWidth="421.0" minHeight="140.0" minWidth="421.0" prefHeight="140.0" prefWidth="421.0" AnchorPane.leftAnchor="300.0">
                <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
                   <ColumnConstraints hgrow="NEVER" maxWidth="253.0" minWidth="253.0" prefWidth="253.0" />
@@ -54,7 +56,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Spinner id="spinnerSerie" fx:id="spinnerSerie" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" max="5" min="1" />
+                  <Spinner id="spinnerSerie" fx:id="spinnerSerie" max="5" maxHeight="30.0" maxWidth="150.0" min="1" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" />
                   <TextField id="txtTurma" fx:id="txtTurma" editable="false" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
@@ -65,9 +67,18 @@
                   </TextField>
                </children>
             </GridPane>
-            <Button id="btnSalvar" onAction="#salvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-            <Button id="btnDel" onAction="#deletar" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
-            <Button id="btnVoltar" onAction="#voltar" layoutX="350.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
+            <Button id="btnSalvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar" AnchorPane.leftAnchor="300.0" />
+            <Button id="btnDel" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#deletar" prefHeight="30.0" prefWidth="95.0" text="Deletar" AnchorPane.leftAnchor="450.0" />
+            <Button id="btnVoltar" fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="btnNovo" layoutX="600.0" layoutY="490.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="30.0" prefWidth="95.0" text="Novo">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            d</Button>
          </children>
       </AnchorPane>
    </center>
@@ -76,11 +87,12 @@
          <menus>
             <Menu id="menu" mnemonicParsing="false" text="Cadastros">
                <items>
-                  <MenuItem id="menuAluno" onAction="#irParaAluno" mnemonicParsing="false" text="Cadastro de Aluno" />
-                  <MenuItem id="menuProfessor" onAction="#irParaProfessor" mnemonicParsing="false" text="Cadastro de Professor" />
-                  <MenuItem id="menuTurma" onAction="#irParaTurma" mnemonicParsing="false" text="Criar Turma" />
-                  <MenuItem id="menuNota" onAction="#irParaNotas" mnemonicParsing="false" text="Cadastro de Notas" />
-                  <MenuItem id="menuHist" onAction="#irParaHistorico" mnemonicParsing="false" text="Histórico" />
+                  <MenuItem id="menuAluno" mnemonicParsing="false" onAction="#irParaAluno" text="Cadastro de Aluno" />
+                  <MenuItem id="menuProfessor" mnemonicParsing="false" onAction="#irParaProfessor" text="Cadastro de Professor" />
+                  <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
+                  <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
+                  <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
+                  <SeparatorMenuItem id="separador" mnemonicParsing="false" />
                   <MenuItem id="menuBemvindo" mnemonicParsing="false" onAction="#irParaBemvindo" text="Tela inicial" />
                </items>
             </Menu>

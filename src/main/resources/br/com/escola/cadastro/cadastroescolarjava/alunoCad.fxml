@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -25,7 +26,7 @@
     <center>
         <AnchorPane id="anchorPane" maxHeight="615.0" maxWidth="1280.0" minHeight="615.0" minWidth="300.0" prefHeight="615.0" prefWidth="1280.0" snapToPixel="false">
             <children>
-                <GridPane layoutX="20.0" layoutY="76.0" prefHeight="373.0" prefWidth="593.0">
+                <GridPane layoutX="20.0" layoutY="76.0" prefHeight="373.0" prefWidth="593.0" AnchorPane.leftAnchor="300.0">
                     <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
                         <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" />
@@ -141,16 +142,29 @@
                         </Label>
                     </children>
                 </GridPane>
-                <Button id="btnPesquisar" layoutX="350.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Pesquisar" />
-                <Button id="btnSalvar" layoutX="200.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar" />
-                <Button id="btnDeletar" layoutX="350.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletar" prefHeight="30.0" prefWidth="95.0" text="Deletar" />
-                <Button id="btnVoltar" layoutX="500.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#voltar" prefHeight="30.0" prefWidth="95.0" text="Voltar" />
-                <Label layoutX="17.0" layoutY="540.0" text="Procurar:">
+                <Button id="btnPesquisar" layoutX="600.0" layoutY="540.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Pesquisar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button id="btnSalvar" layoutX="300.0" layoutY="490.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button id="btnDeletar" layoutX="450.0" layoutY="490.0" mnemonicParsing="false" onAction="#deletar" prefHeight="30.0" prefWidth="95.0" text="Deletar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                <Button id="btnVoltar" fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Label layoutX="300.0" layoutY="540.0" text="Procurar:">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="91.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="253.0" prefHeight="30.0" prefWidth="245.0" promptText="Digite a Matrícula">
+                <TextField id="txtPesquisa" fx:id="txtPesquisa" layoutX="372.0" layoutY="540.0" maxHeight="30.0" maxWidth="253.0" minHeight="30.0" minWidth="207.0" prefHeight="30.0" prefWidth="207.0" promptText="Digite a Matrícula">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -160,7 +174,10 @@
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Button id="btnNovo" onAction="#limparCampos" layoutX="50.0" layoutY="490.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Novo" />
+                <Button id="btnNovo" layoutX="600.0" layoutY="490.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="30.0" prefWidth="95.0" text="Novo">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             </children>
         </AnchorPane>
     </center>
@@ -174,6 +191,7 @@
                         <MenuItem id="menuTurma" mnemonicParsing="false" onAction="#irParaTurma" text="Criar Turma" />
                         <MenuItem id="menuNota" mnemonicParsing="false" onAction="#irParaNotas" text="Cadastro de Notas" />
                         <MenuItem id="menuHist" mnemonicParsing="false" onAction="#irParaHistorico" text="Histórico" />
+                  <SeparatorMenuItem id="separador" mnemonicParsing="false" />
                         <MenuItem id="menuBemvindo" mnemonicParsing="false" onAction="#irParaBemvindo" text="Tela inicial" />
                     </items>
                 </Menu>
