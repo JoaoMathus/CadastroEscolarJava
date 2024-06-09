@@ -69,7 +69,7 @@
             </GridPane>
             <Button id="btnSalvar" layoutX="50.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#salvar" prefHeight="30.0" prefWidth="95.0" text="Salvar" AnchorPane.leftAnchor="300.0" />
             <Button id="btnDel" layoutX="200.0" layoutY="300.0" maxHeight="30.0" maxWidth="95.0" minHeight="30.0" minWidth="95.0" mnemonicParsing="false" onAction="#deletar" prefHeight="30.0" prefWidth="95.0" text="Deletar" AnchorPane.leftAnchor="450.0" />
-            <Button id="btnVoltar" fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
+            <Button id="btnVoltar" fx:id="btnVoltar" onAction="#voltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

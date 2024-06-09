@@ -224,12 +224,12 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button id="btnLimpar" layoutX="450.0" layoutY="181.0" mnemonicParsing="false" onAction="#selecionar" prefHeight="30.0" prefWidth="95.0" text="Limpar">
+            <Button id="btnLimpar" fx:id="btnLimpar" layoutX="450.0" layoutY="181.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="30.0" prefWidth="95.0" text="Limpar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="btnVoltar" fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
+            <Button id="btnVoltar" fx:id="btnVoltar" onAction="#voltar" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@assets/btnVoltar.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
